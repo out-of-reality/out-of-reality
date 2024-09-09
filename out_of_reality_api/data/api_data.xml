@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="api_user" model="res.users" context="{'no_reset_password': True}">
+            <field name="name">API User</field>
+            <field name="login">api_user</field>
+            <field name="groups_id" eval="[(6, 0, [])]"/>
+        </record>
+        <record model="fastapi.endpoint" id="fastapi_endpoint_partner_api">
+            <field name="name">Out of Relity API</field>
+            <field name="app">out_of_reality</field>
+            <field name="root_path">/out_of_reality_api</field>
+            <field name="user_id" ref="api_user"/>
+        </record>
+    </data>
+</odoo>
