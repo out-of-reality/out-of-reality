@@ -2,12 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Annotated
 from odoo.api import Environment
 from odoo.addons.fastapi.dependencies import odoo_env
-from ..schemas import UserResponse, UserLogin, UserData
+from ..schemas import UserResponse, UserLogin, UserData, UserFaceIDLogin
 from datetime import timedelta, datetime
 from jose import jwt
 from odoo.exceptions import AccessDenied
 from odoo.addons.fastapi.dependencies import authenticated_partner
 from odoo.addons.base.models.res_partner import Partner
+from ..controllers.main import FaceIDFastAPIController
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -66,3 +67,35 @@ def whoami(
     partner: Annotated[Partner, Depends(authenticated_partner)]
 ) -> UserData:
     return UserData(name=partner.name)
+
+
+@router.post("/faceid_login", response_model=UserResponse)
+def faceid_login(
+    user_login: UserFaceIDLogin,
+    env: Annotated[Environment, Depends(odoo_env)]
+) -> UserResponse:
+    image = user_login.image
+
+    faceid_controller = FaceIDFastAPIController()
+
+    response = faceid_controller.verify_face(image)
+
+    if response.get('success'):
+        matched_user = response.get('user')
+
+        access_token = create_access_token(
+            data={"sub": matched_user.login},
+            secret_key=env['ir.config_parameter'].sudo().get_param('jwt.secret_key')
+        )
+
+        return UserResponse(
+            id=matched_user.id,
+            name=matched_user.name,
+            email=matched_user.email,
+            access_token=access_token
+        )
+
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail=response['message'],
+    )
