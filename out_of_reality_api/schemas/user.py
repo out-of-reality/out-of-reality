@@ -15,3 +15,7 @@ class UserResponse(BaseModel):
 
 class UserData(BaseModel):
     name: str
+
+
+class UserFaceIDLogin(BaseModel):
+    image: str

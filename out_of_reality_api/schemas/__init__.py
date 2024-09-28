@@ -1,1 +1,1 @@
-from .user import UserLogin, UserResponse, UserData
+from .user import UserLogin, UserResponse, UserData, UserFaceIDLogin
