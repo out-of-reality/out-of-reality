@@ -4,7 +4,7 @@
     'category': 'API',
     'author': 'Franco Leyes - Augusto cáceres - Santiago Agüero',
     'license': 'LGPL-3',
-    'depends': ['fastapi', 'auth_faceid'],
+    'depends': ['fastapi', 'auth_faceid', 'clinic_management'],
     'data': [
         'data/api_data.xml',
         'security/security.xml',
