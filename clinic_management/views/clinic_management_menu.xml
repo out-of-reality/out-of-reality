@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="clinic_management_menu_root"
+        name="Clinic Management">
+
+        <menuitem id="menu_clinic_game_session"
+            name="Clinic Game Sessions"
+            action="action_clinic_game_session"/>
+
+    </menuitem>
+</odoo>
