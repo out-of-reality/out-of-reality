@@ -10,3 +10,4 @@ class ClinicGameSession(models.Model):
     video = fields.Binary()
     filename = fields.Char()
     session_date = fields.Date(default=fields.Datetime.now)
+    test1 = fields.Ch()
