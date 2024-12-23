@@ -3,10 +3,24 @@
     <menuitem id="clinic_management_menu_root" name="Clinic Management">
 
         <menuitem
+            id="menu_clinic_patients"
+            name="Patients"
+            action="action_clinic_patients"
+            sequence="10"
+        />
+        <menuitem
             id="menu_clinic_game_session"
             name="Clinic Game Sessions"
             action="action_clinic_game_session"
+            sequence="20"
         />
+        <menuitem id="menu_clinic_settings" name="Settings" sequence="30">
+            <menuitem
+                id="menu_clinic_settings_health_insurance"
+                name="Health Insurance"
+                action="action_clinic_health_insurance"
+            />
+        </menuitem>
 
     </menuitem>
 </odoo>

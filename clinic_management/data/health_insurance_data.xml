@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="health_insurance_osde" model="health.insurance">
+        <field name="name">OSDE</field>
+    </record>
+    <record id="health_insurance_swiss_medical" model="health.insurance">
+        <field name="name">Swiss Medical</field>
+    </record>
+    <record id="health_insurance_galeno" model="health.insurance">
+        <field name="name">Galeno</field>
+    </record>
+    <record id="health_insurance_medife" model="health.insurance">
+        <field name="name">Medifé</field>
+    </record>
+    <record id="health_insurance_osep" model="health.insurance">
+        <field name="name">OSEP</field>
+    </record>
+    <record id="health_insurance_hospital_italiano" model="health.insurance">
+        <field name="name">Hospital Italiano</field>
+    </record>
+    <record id="health_insurance_ospe" model="health.insurance">
+        <field name="name">OSPE</field>
+    </record>
+    <record id="health_insurance_ioma" model="health.insurance">
+        <field name="name">IOMA</field>
+    </record>
+    <record id="health_insurance_ospat" model="health.insurance">
+        <field name="name">OSPAT</field>
+    </record>
+</odoo>

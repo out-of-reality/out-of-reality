@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_clinic_game_session,clinic.game.session,model_clinic_game_session,group_clinic_management_user,1,1,1,1
+access_clinic_game_session_user,clinic.game.session,model_clinic_game_session,group_clinic_management_user,1,1,1,1
+access_res_partner_link_user,res.partner.link,model_res_partner_link,group_clinic_management_user,1,1,1,1
+access_health_insurance_user,health.insurance,model_health_insurance,group_clinic_management_user,1,0,0,0
+
+access_health_insurance_admin,health.insurance,model_health_insurance,group_clinic_management_admin,1,1,1,1

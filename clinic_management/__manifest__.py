@@ -9,6 +9,8 @@
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "views/clinic_game_session_views.xml",
+        "views/res_partner_views.xml",
+        "views/health_insurance_views.xml",
         "views/clinic_management_menu.xml",
     ],
     "installable": True,
