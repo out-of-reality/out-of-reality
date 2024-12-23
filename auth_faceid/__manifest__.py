@@ -5,7 +5,7 @@
     "license": "LGPL-3",
     "website": "https://github.com/out-of-reality/out-of-reality",
     "depends": ["web"],
-    "external_dependencies": {"python": ["face_recognition", "python-jose"]},
+    "external_dependencies": {"python": ["dlib", "face_recognition", "python-jose"]},
     "data": [
         "views/login_views.xml",
     ],

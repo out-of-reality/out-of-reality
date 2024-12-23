@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_health_insurance_tree" model="ir.ui.view">
+        <field name="name">health.insurance.tree</field>
+        <field name="model">health.insurance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_health_insurance_form" model="ir.ui.view">
+        <field name="name">health.insurance.form</field>
+        <field name="model">health.insurance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_clinic_health_insurance" model="ir.actions.act_window">
+        <field name="name">Health Insurance</field>
+        <field name="res_model">health.insurance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+                Manage all the health insurance records here.
+            </p>
+        </field>
+    </record>
+</odoo>
