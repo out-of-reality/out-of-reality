@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+      <t t-name="auth_faceid.FaceIDLogin">
+        <button type="button" class="btn btn-secondary w-100" t-on-click="openModal">
+            Log in FaceID
+        </button>
+
+        <div id="faceidModal" class="modal" style="display:none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">FaceID Authentication</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            t-on-click="closeModal"
+                        />
+                    </div>
+                    <div class="modal-body">
+                        <video t-ref="videoElement" autoplay="true" class="w-100" />
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            t-on-click="closeModal"
+                        >Cancel</button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            t-on-click="captureImage"
+                        >Capture</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="d-none justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+      </t>
+  </templates>

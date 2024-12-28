@@ -1,0 +1,7 @@
+<odoo>
+    <template id="login" inherit_id="web.login" name="Login FaceID">
+        <xpath expr="//button[hasclass('btn-primary')]" position="after">
+            <owl-component name="auth_faceid.FaceIDLogin" />
+        </xpath>
+    </template>
+</odoo>
