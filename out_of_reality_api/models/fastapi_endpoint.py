@@ -1,16 +1,20 @@
-from odoo import fields, models
-from ..routers import router
-from odoo.addons.fastapi.dependencies import authenticated_partner_impl
-from ..dependencies import authenticated_partner_from_jwt
-from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
+
+from odoo import fields, models
+
+from odoo.addons.fastapi.dependencies import authenticated_partner_impl
+
+from ..dependencies import authenticated_partner_from_jwt
+from ..routers import router
 
 
 class FastapiEndpoint(models.Model):
     _inherit = "fastapi.endpoint"
 
     app: str = fields.Selection(
-        selection_add=[("out_of_reality", "Out of reality")], ondelete={"out_of_reality": "cascade"}
+        selection_add=[("out_of_reality", "Out of reality")],
+        ondelete={"out_of_reality": "cascade"},
     )
 
     def _get_fastapi_routers(self):
