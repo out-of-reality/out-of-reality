@@ -11,6 +11,7 @@
         "views/clinic_game_session_views.xml",
         "views/res_partner_views.xml",
         "views/health_insurance_views.xml",
+        "views/res_users_views.xml",
         "views/clinic_management_menu.xml",
     ],
     "installable": True,
