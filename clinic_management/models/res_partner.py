@@ -16,7 +16,7 @@ class ResPartner(models.Model):
         store=True,
     )
     patient_link_ids = fields.One2many(
-        "res.partner.link", "patient_id", string="Contacts"
+        "res.users.link", "patient_id", string="Contacts"
     )
     wards_count = fields.Integer(compute="_compute_wards_count")
     patients_count = fields.Integer(compute="_compute_patients_count")
@@ -30,24 +30,24 @@ class ResPartner(models.Model):
     def _compute_wards_count(self):
         guardians = self.filtered(lambda x: x.partner_type == "guardian")
         for rec in guardians:
-            rec.wards_count = self.env["res.partner.link"].search_count(
-                [("partner_id", "=", rec.id)]
+            rec.wards_count = self.env["res.users.link"].search_count(
+                [("user_id.partner_id", "=", rec.id)]
             )
         (self - guardians).wards_count = 0
 
     def _compute_patients_count(self):
         kinesiologists = self.filtered(lambda x: x.partner_type == "kinesiologist")
         for rec in kinesiologists:
-            rec.patients_count = self.env["res.partner.link"].search_count(
-                [("partner_id", "=", rec.id)]
+            rec.patients_count = self.env["res.users.link"].search_count(
+                [("user_id.partner_id", "=", rec.id)]
             )
         (self - kinesiologists).patients_count = 0
 
     def open_related_wards(self):
         self.ensure_one()
         ward_ids = (
-            self.env["res.partner.link"]
-            .search([("partner_id", "=", self.id)])
+            self.env["res.users.link"]
+            .search([("user_id.partner_id", "=", self.id)])
             .mapped("patient_id.id")
         )
         return {
@@ -61,8 +61,8 @@ class ResPartner(models.Model):
     def open_related_patients(self):
         self.ensure_one()
         patient_ids = (
-            self.env["res.partner.link"]
-            .search([("partner_id", "=", self.id)])
+            self.env["res.users.link"]
+            .search([("user_id.partner_id", "=", self.id)])
             .mapped("patient_id.id")
         )
         return {
@@ -75,13 +75,13 @@ class ResPartner(models.Model):
 
     @api.constrains("patient_link_ids")
     def _check_mandatory_guardian(self):
-        for rec in self:
+        for rec in self.filtered(lambda x: x.partner_type == "patient"):
             if not rec.patient_link_ids.filtered(
-                lambda link: link.partner_id.partner_type == "guardian"
+                lambda link: link.user_id.partner_id.partner_type == "guardian"
             ):
                 raise ValidationError(
                     _(
-                        "Each user must have at least one linked contact with "
+                        "Each patient must have at least one linked contact with "
                         "partner type 'Guardian'."
                     )
                 )

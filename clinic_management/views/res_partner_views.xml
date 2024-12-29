@@ -7,6 +7,12 @@
         <field name="arch" type="xml">
             <search position="inside">
                 <filter
+                    string="My patients"
+                    name="filter_my_patients"
+                    domain="[('patient_link_ids.user_id', '=', uid)]"
+                />
+                <separator />
+                <filter
                     string="Patients"
                     name="filter_patients"
                     domain="[('partner_type', '=', 'patient')]"
@@ -66,11 +72,11 @@
             </xpath>
 
             <page name="contact_addresses" position="attributes">
-                <attribute name="invisible">not is_company</attribute>
+                <attribute name="invisible">partner_type == 'patient'</attribute>
             </page>
 
             <page name="sales_purchases" position="attributes">
-                <attribute name="invisible">not is_company</attribute>
+                <attribute name="invisible">partner_type == 'patient'</attribute>
             </page>
 
             <page name="contact_addresses" position="before">
@@ -82,15 +88,19 @@
                     <field name="patient_link_ids">
                         <tree editable="bottom">
                             <field
-                                name="partner_id"
-                                context="{'default_partner_type': 'guardian'}"
+                                name="user_id"
+                                context="{'default_groups_id': [(6, 0, [%(base.group_portal)d])], 'default_partner_type': 'guardian'}"
                             />
                             <field name="relationship" />
                             <field name="note" />
                         </tree>
                     </field>
                 </page>
-                <page name="health_insurance" string="Health Insurance">
+                <page
+                    name="health_insurance"
+                    string="Health Insurance"
+                    invisible="partner_type != 'patient'"
+                >
                     <group>
                         <field name="health_insurance_id" />
                         <field name="health_insurance_number" />
