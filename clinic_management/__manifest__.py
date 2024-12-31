@@ -3,7 +3,7 @@
     'version': "17.0.1.0.0",
     'author': 'Franco Leyes - Augusto Caceres - Santiago Agüero',
     'license': 'LGPL-3',
-    'depends': ['web'],
+    'depends': ['web','web_widget_mpld3_chart'],
     'data': [
         'security/res_groups.xml',
         'security/ir.model.access.csv',

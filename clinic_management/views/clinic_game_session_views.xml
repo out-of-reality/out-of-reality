@@ -20,8 +20,16 @@
                         <field name="patient_id"/>
                         <field name="session_date"/>
                         <field name="filename" invisible="1"/>
-                        <field name="video" widget="video_widget" filename="filename"/>
+                        <field name="video" filename="filename"/>
+                        <field name="angle_selection_1" widget="selection"/>
+                        <field name="angle_selection_2" widget="selection"/>
                     </group>
+                    <div>
+                        <field name="grafico_1" widget="mpld3_chart" nolabel="1"/>
+                    </div>
+                    <div>
+                        <field name="grafico_2" widget="mpld3_chart" nolabel="1"/>
+                    </div>
                 </sheet>
             </form>
         </field>
