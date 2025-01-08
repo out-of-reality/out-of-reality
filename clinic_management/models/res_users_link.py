@@ -8,7 +8,12 @@ class ResUsersLink(models.Model):
     _order = "relationship"
 
     patient_id = fields.Many2one("res.partner", required=True, ondelete="cascade")
-    user_id = fields.Many2one("res.users", required=True, ondelete="restrict")
+    user_id = fields.Many2one(
+        "res.users",
+        required=True,
+        ondelete="restrict",
+        domain=[("partner_type", "in", ["guardian", "kinesiologist"])],
+    )
     relationship = fields.Selection(related="user_id.partner_type", store=True)
     note = fields.Text()
 

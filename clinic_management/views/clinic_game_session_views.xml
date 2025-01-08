@@ -23,6 +23,11 @@
                         <field name="video" widget="video_widget" filename="filename" />
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
             </form>
         </field>
     </record>
@@ -35,7 +40,7 @@
                 <filter
                     string="My patients"
                     name="filter_my_patients"
-                    domain="[('kinesiologist_ids', 'in', [uid])]"
+                    domain="[('patient_id.patient_link_ids.user_id', '=', uid)]"
                 />
                 <filter
                     string="Patient"
