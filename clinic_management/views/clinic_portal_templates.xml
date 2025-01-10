@@ -134,6 +134,52 @@
         inherit_id="portal.portal_sidebar"
     >
         <t t-call="portal.portal_layout">
+            <div
+                class="o_portal_header"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"
+            >
+                <h2 style="font-size: 24px; font-weight: bold; color: #333; margin: 0;">
+                    Patient: <t t-esc="object.patient_id.name" />
+                </h2>
+                <span style="font-size: 14px; color: #777; margin-left: 20px;">
+                    Session Date: <t t-esc="object.session_date" />
+                </span>
+            </div>
+
+            <t t-if="not is_html_empty(object.feedback)">
+                <div
+                    class="alert alert-info"
+                    style="margin-bottom: 20px; padding: 15px; border-radius: 5px;"
+                >
+                    <h4
+                        style="margin: 0 0 10px; font-weight: bold;"
+                    >Game Session Feedback</h4>
+                    <p t-esc="object.feedback" style="margin: 0;" />
+                </div>
+            </t>
+
+            <div
+                class="o_portal_kinesiologists"
+                style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;"
+            >
+                <h4
+                    style="margin: 0 0 10px; font-weight: bold; color: #333;"
+                >Kinesiologists</h4>
+                <ul style="margin: 0; padding: 0 0 0 20px;">
+                    <t
+                        t-foreach="object.patient_id.patient_link_ids.filtered(lambda x: x.user_id.partner_id.partner_type == 'kinesiologist')"
+                        t-as="kinesiologist"
+                    >
+                        <li style="margin-bottom: 5px;">
+                            <strong><t
+                                    t-esc="kinesiologist.user_id.partner_id.name"
+                                /></strong>
+                            (<t t-esc="kinesiologist.user_id.email" />)
+                        </li>
+                    </t>
+                </ul>
+            </div>
+
             <div class="o_portal_content">
                 <div class="o_portal_messages_container">
                     <h3>Communication history</h3>
@@ -144,4 +190,5 @@
             </div>
         </t>
     </template>
+
 </odoo>
