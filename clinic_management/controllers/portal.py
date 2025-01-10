@@ -1,4 +1,5 @@
 from odoo import _, http
+from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
@@ -96,9 +97,11 @@ class GameSessionCustomerPortal(CustomerPortal):
     def portal_game_session_page(
         self, session_id, access_token=None, message=False, **kw
     ):
-        session_sudo = request.env["clinic.game.session"].sudo().browse(session_id)
-
-        if not session_sudo.exists():
+        try:
+            session_sudo = self._document_check_access(
+                "clinic.game.session", session_id, access_token=access_token
+            )
+        except (AccessError, MissingError):
             return request.redirect("/my")
 
         values = {

@@ -1,0 +1,33 @@
+<odoo noupdate="1">
+    <record id="email_template_clinic_session" model="mail.template">
+        <field name="name">Clinic Game Session Notification</field>
+        <field name="model_id" ref="clinic_management.model_clinic_game_session" />
+        <field
+            name="subject"
+        >Game Session Details for {{ object.patient_id.name }} - {{ object.session_date }}</field>
+        <field name="email_from">{{ user.email_formatted }}</field>
+        <field name="partner_to">
+            {{ ','.join(map(str, object.patient_id.patient_link_ids.filtered(lambda x: x.user_id.partner_id.partner_type == "guardian").mapped('user_id.partner_id.id'))) }}
+        </field>
+        <field name="body_html" type="html">
+<div style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <p>Hello,</p>
+    <p>The game session for <strong><t
+                            t-out="object.patient_id.name"
+                        /></strong> was scheduled on <strong><t
+                            t-out="object.session_date"
+                        /></strong>.</p>
+    <t t-if="not is_html_empty(object.feedback)">
+        <p><strong>Feedback:</strong></p>
+        <p><t t-out="object.feedback" /></p>
+    </t>
+    <p>Best regards,</p>
+    <t t-if="ctx.get('user_name')">
+        <p><t t-out="ctx.get('user_name')" /></p>
+    </t>
+</div>
+        </field>
+        <field name="lang">{{ object.patient_id.lang }}</field>
+        <field name="auto_delete" eval="True" />
+    </record>
+</odoo>

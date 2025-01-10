@@ -6,6 +6,7 @@
     "website": "https://github.com/out-of-reality/out-of-reality",
     "depends": ["web", "portal"],
     "data": [
+        "data/mail_template_data.xml",
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
@@ -15,6 +16,9 @@
         "views/res_users_views.xml",
         "views/clinic_management_menu.xml",
         "views/clinic_portal_templates.xml",
+    ],
+    "demo": [
+        "demo/health_insurance.xml",
     ],
     "installable": True,
     "auto_install": False,
