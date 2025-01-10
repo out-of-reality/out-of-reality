@@ -14,8 +14,43 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Actions"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: clinic_management
 #: model:res.groups,name:clinic_management.group_clinic_management_admin
 msgid "Administrator"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_attachment_count
+msgid "Attachment Count"
 msgstr ""
 
 #. module: clinic_management
@@ -33,6 +68,11 @@ msgstr ""
 #: model:ir.module.category,name:clinic_management.category_clinic_management
 #: model:ir.ui.menu,name:clinic_management.clinic_management_menu_root
 msgid "Clinic Management"
+msgstr ""
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Communication history"
 msgstr ""
 
 #. module: clinic_management
@@ -87,6 +127,33 @@ msgid "Filename"
 msgstr ""
 
 #. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_home
+msgid "Follow the sessions"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_layout
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_home
+msgid "Game Sessions"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields.selection,name:clinic_management.selection__res_partner__partner_type__guardian
 msgid "Guardian"
 msgstr ""
@@ -94,6 +161,11 @@ msgstr ""
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_res_partner_filter
 msgid "Guardians"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: clinic_management
@@ -120,7 +192,32 @@ msgid "ID"
 msgstr ""
 
 #. module: clinic_management
-#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__kinesiologist_ids
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_has_error
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields.selection,name:clinic_management.selection__res_partner__partner_type__kinesiologist
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_res_partner_filter
 msgid "Kinesiologist"
@@ -146,6 +243,21 @@ msgid "Manage all the health insurance records here."
 msgstr ""
 
 #. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_res_partner_filter
 msgid "My patients"
@@ -157,6 +269,28 @@ msgid "Name"
 msgstr ""
 
 #. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/controllers/portal.py:0
+#, python-format
+msgid "Newest"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: clinic_management
 #: model_terms:ir.actions.act_window,help:clinic_management.action_clinic_game_session
 msgid "No game sessions available yet."
 msgstr ""
@@ -164,6 +298,26 @@ msgstr ""
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__note
 msgid "Note"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_has_error_counter
+msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: clinic_management
@@ -209,7 +363,18 @@ msgid "Res Users Link"
 msgstr ""
 
 #. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__session_date
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
 msgid "Session Date"
 msgstr ""
@@ -217,6 +382,15 @@ msgstr ""
 #. module: clinic_management
 #: model:ir.ui.menu,name:clinic_management.menu_clinic_settings
 msgid "Settings"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
 msgstr ""
 
 #. module: clinic_management
@@ -235,6 +409,16 @@ msgid "The contact must be added on a one-time basis with the patient."
 msgstr ""
 
 #. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "There are no game sessions."
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__user_id
 #: model:res.groups,name:clinic_management.group_clinic_management_user
 msgid "User"
@@ -246,6 +430,11 @@ msgid "Video"
 msgstr ""
 
 #. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "View Details"
+msgstr ""
+
+#. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_academic_partner_form
 msgid "Wards"
 msgstr ""
@@ -254,6 +443,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:clinic_management.field_res_partner__wards_count
 #: model:ir.model.fields,field_description:clinic_management.field_res_users__wards_count
 msgid "Wards Count"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__website_message_ids
+msgid "Website communication history"
 msgstr ""
 
 #. module: clinic_management
