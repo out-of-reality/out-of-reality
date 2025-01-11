@@ -22,6 +22,10 @@ class ResPartner(models.Model):
     patients_count = fields.Integer(compute="_compute_patients_count")
     health_insurance_id = fields.Many2one("health.insurance")
     health_insurance_number = fields.Char()
+    self_managed = fields.Boolean(
+        help="""Indicates if the patient manages their
+        own information without requiring a guardian."""
+    )
 
     @api.depends("is_company")
     def _compute_partner_type(self):
@@ -75,13 +79,15 @@ class ResPartner(models.Model):
 
     @api.constrains("patient_link_ids")
     def _check_mandatory_guardian(self):
-        for rec in self.filtered(lambda x: x.partner_type == "patient"):
+        for rec in self.filtered(
+            lambda x: x.partner_type == "patient" and not x.self_managed
+        ):
             if not rec.patient_link_ids.filtered(
                 lambda link: link.user_id.partner_id.partner_type == "guardian"
             ):
                 raise ValidationError(
                     _(
                         "Each patient must have at least one linked contact with "
-                        "partner type 'Guardian'."
+                        "partner type 'Guardian', unless marked as self-managed."
                     )
                 )

@@ -21,7 +21,12 @@ class ClinicGameSession(models.Model):
 
     def _message_get_suggested_recipients(self):
         res = super()._message_get_suggested_recipients()
-        for partner in self.patient_id.patient_link_ids.mapped("user_id.partner_id"):
+        patient = self.patient_id
+        if patient.self_managed:
+            self._message_add_suggested_recipient(res, partner=patient)
+
+        linked_partners = patient.patient_link_ids.mapped("user_id.partner_id")
+        for partner in linked_partners:
             self._message_add_suggested_recipient(res, partner=partner)
         return res
 
@@ -30,6 +35,9 @@ class ClinicGameSession(models.Model):
             partners_to_subscribe = record.patient_id.patient_link_ids.mapped(
                 "user_id.partner_id.id"
             )
+            if record.patient_id.self_managed:
+                partners_to_subscribe.append(record.patient_id.id)
+
             if partners_to_subscribe:
                 record.message_subscribe(partner_ids=partners_to_subscribe)
 
@@ -113,3 +121,12 @@ class ClinicGameSession(models.Model):
         for rec in self:
             rec.access_url = f"/my/game_sessions/{rec.id}"
         return res
+
+    def get_partner_ids_for_notification(self):
+        self.ensure_one()
+        partner_ids = self.patient_id.patient_link_ids.filtered(
+            lambda x: x.user_id.partner_id.partner_type == "guardian"
+        ).mapped("user_id.partner_id.id")
+        if self.patient_id.self_managed:
+            partner_ids.append(self.patient_id.id)
+        return partner_ids
