@@ -32,6 +32,13 @@ msgid ""
 msgstr ""
 
 #. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/res_users.py:0
+#, python-format
+msgid "Access denied: Your profile is not marked as self-managed."
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__access_warning
 msgid "Access warning"
 msgstr ""
@@ -156,7 +163,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Each patient must have at least one linked contact with partner type "
-"'Guardian'."
+"'Guardian', unless marked as self-managed."
 msgstr ""
 
 #. module: clinic_management
@@ -266,6 +273,14 @@ msgstr ""
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_has_error
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_res_partner__self_managed
+#: model:ir.model.fields,help:clinic_management.field_res_users__self_managed
+msgid ""
+"Indicates if the patient manages their\n"
+"        own information without requiring a guardian."
 msgstr ""
 
 #. module: clinic_management
@@ -466,6 +481,12 @@ msgid "Security Token"
 msgstr ""
 
 #. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_res_partner__self_managed
+#: model:ir.model.fields,field_description:clinic_management.field_res_users__self_managed
+msgid "Self Managed"
+msgstr ""
+
+#. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
 msgid "Send by Email"
 msgstr ""
@@ -528,6 +549,7 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: clinic_management
+#: model:ir.model,name:clinic_management.model_res_users
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__user_id
 #: model:res.groups,name:clinic_management.group_clinic_management_user
 msgid "User"
