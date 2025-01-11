@@ -14,6 +14,29 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: clinic_management
+#: model:mail.template,body_html:clinic_management.email_template_clinic_session
+msgid ""
+"<div style=\"font-family: Arial, sans-serif; line-height: 1.6;\">\n"
+"    <p>Hello,</p>\n"
+"    <p>The game session for <strong><t t-out=\"object.patient_id.name\"></t></strong> was scheduled on <strong><t t-out=\"object.session_date\"></t></strong>.</p>\n"
+"    <t t-if=\"not is_html_empty(object.feedback)\">\n"
+"        <p><strong>Feedback:</strong></p>\n"
+"        <p><t t-out=\"object.feedback\"></t></p>\n"
+"    </t>\n"
+"    <p>Best regards,</p>\n"
+"    <t t-if=\"ctx.get('user_name')\">\n"
+"        <p><t t-out=\"ctx.get('user_name')\"></t></p>\n"
+"    </t>\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__access_warning
+msgid "Access warning"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_needaction
 msgid "Action Needed"
 msgstr ""
@@ -56,6 +79,11 @@ msgstr ""
 #. module: clinic_management
 #: model:ir.model,name:clinic_management.model_clinic_game_session
 msgid "Clinic Game Session"
+msgstr ""
+
+#. module: clinic_management
+#: model:mail.template,name:clinic_management.email_template_clinic_session
+msgid "Clinic Game Session Notification"
 msgstr ""
 
 #. module: clinic_management
@@ -106,10 +134,20 @@ msgid "Created on"
 msgstr ""
 
 #. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__access_url
+msgid "Customer Portal URL"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__display_name
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__display_name
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__done
+msgid "Done"
 msgstr ""
 
 #. module: clinic_management
@@ -119,6 +157,12 @@ msgstr ""
 msgid ""
 "Each patient must have at least one linked contact with partner type "
 "'Guardian'."
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__feedback
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Feedback"
 msgstr ""
 
 #. module: clinic_management
@@ -144,6 +188,18 @@ msgstr ""
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: clinic_management
+#: model:mail.template,subject:clinic_management.email_template_clinic_session
+msgid ""
+"Game Session Details for {{ object.patient_id.name }} - {{ "
+"object.session_date }}"
+msgstr ""
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Game Session Feedback"
 msgstr ""
 
 #. module: clinic_management
@@ -224,6 +280,11 @@ msgid "Kinesiologist"
 msgstr ""
 
 #. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Kinesiologists"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__write_uid
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__write_uid
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__write_uid
@@ -266,6 +327,11 @@ msgstr ""
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__name
 msgid "Name"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__new
+msgid "New"
 msgstr ""
 
 #. module: clinic_management
@@ -336,6 +402,11 @@ msgid "Patient"
 msgstr ""
 
 #. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Patient:"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.actions.act_window,name:clinic_management.action_clinic_patients
 #: model:ir.ui.menu,name:clinic_management.menu_clinic_patients
 #: model_terms:ir.actions.act_window,help:clinic_management.action_clinic_patients
@@ -358,6 +429,16 @@ msgid "Patients must be of type 'Patient'."
 msgstr ""
 
 #. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__access_url
+msgid "Portal Access URL"
+msgstr ""
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Preview"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model,name:clinic_management.model_res_users_link
 msgid "Res Users Link"
 msgstr ""
@@ -368,8 +449,25 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/clinic_game_session.py:0
+#, python-format
+msgid "Review game session for %s"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_has_sms_error
 msgid "SMS Delivery error"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__access_token
+msgid "Security Token"
+msgstr ""
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Send by Email"
 msgstr ""
 
 #. module: clinic_management
@@ -380,8 +478,19 @@ msgid "Session Date"
 msgstr ""
 
 #. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Session Date:"
+msgstr ""
+
+#. module: clinic_management
 #: model:ir.ui.menu,name:clinic_management.menu_clinic_settings
 msgid "Settings"
+msgstr ""
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__state
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
+msgid "State"
 msgstr ""
 
 #. module: clinic_management
