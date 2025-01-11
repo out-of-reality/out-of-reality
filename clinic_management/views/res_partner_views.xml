@@ -63,6 +63,12 @@
                 </group>
             </field>
 
+            <xpath expr="//h1" position="after">
+                <group>
+                    <field name="self_managed" invisible="partner_type != 'patient'" />
+                </group>
+            </xpath>
+
             <xpath expr="//field[@name='parent_id']/.." position="attributes">
                 <attribute name="invisible">partner_type == 'patient'</attribute>
             </xpath>

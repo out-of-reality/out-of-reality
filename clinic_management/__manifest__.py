@@ -4,7 +4,7 @@
     "author": "Out of reality",
     "license": "LGPL-3",
     "website": "https://github.com/out-of-reality/out-of-reality",
-    "depends": ["web", "portal"],
+    "depends": ["web", "portal", "contacts"],
     "data": [
         "data/mail_template_data.xml",
         "security/res_groups.xml",

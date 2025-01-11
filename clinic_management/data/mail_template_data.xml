@@ -7,7 +7,7 @@
         >Game Session Details for {{ object.patient_id.name }} - {{ object.session_date }}</field>
         <field name="email_from">{{ user.email_formatted }}</field>
         <field name="partner_to">
-            {{ ','.join(map(str, object.patient_id.patient_link_ids.filtered(lambda x: x.user_id.partner_id.partner_type == "guardian").mapped('user_id.partner_id.id'))) }}
+            {{ ','.join(map(str, object.get_partner_ids_for_notification())) }}
         </field>
         <field name="body_html" type="html">
 <div style="font-family: Arial, sans-serif; line-height: 1.6;">

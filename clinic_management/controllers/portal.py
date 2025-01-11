@@ -22,10 +22,12 @@ class GameSessionCustomerPortal(CustomerPortal):
         return values
 
     def _prepare_game_session_domain(self):
-        patients = request.env["res.users.link"].search(
-            [("user_id", "=", request.env.user.id)]
-        )
-        return [("patient_id", "in", patients.mapped("patient_id.id"))]
+        user = request.env.user
+        if user.partner_type == "patient" and user.self_managed:
+            return [("patient_id", "=", user.partner_id.id)]
+        else:
+            patients = request.env["res.users.link"].search([("user_id", "=", user.id)])
+            return [("patient_id", "in", patients.mapped("patient_id.id"))]
 
     def _prepare_searchbar_sortings(self):
         return {
