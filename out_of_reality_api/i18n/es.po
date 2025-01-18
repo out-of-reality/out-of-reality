@@ -1,0 +1,35 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* out_of_reality_api
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: out_of_reality_api
+#: model:res.groups,name:out_of_reality_api.group_api_user
+msgid "API User"
+msgstr ""
+
+#. module: out_of_reality_api
+#: model:ir.model.fields,field_description:out_of_reality_api.field_fastapi_endpoint__app
+msgid "App"
+msgstr ""
+
+#. module: out_of_reality_api
+#: model:ir.model,name:out_of_reality_api.model_fastapi_endpoint
+msgid "FastAPI Endpoint"
+msgstr ""
+
+#. module: out_of_reality_api
+#: model:ir.model.fields.selection,name:out_of_reality_api.selection__fastapi_endpoint__app__out_of_reality
+msgid "Out of reality"
+msgstr ""
