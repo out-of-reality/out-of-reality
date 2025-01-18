@@ -77,7 +77,7 @@ class ResPartner(models.Model):
             "context": dict(self.env.context),
         }
 
-    @api.constrains("patient_link_ids")
+    @api.constrains("patient_link_ids", "self_managed")
     def _check_mandatory_guardian(self):
         for rec in self.filtered(
             lambda x: x.partner_type == "patient" and not x.self_managed
