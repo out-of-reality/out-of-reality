@@ -106,3 +106,62 @@ class TestClinicGameSession(TransactionCase):
     def test_check_mandatory_guardian_exception(self):
         with self.assertRaises(ValidationError):
             self.patient.self_managed = False
+
+    def test_compute_wards_count(self):
+        self.env["res.users.link"].create(
+            {"user_id": self.guardian_user.id, "patient_id": self.patient.id}
+        )
+        self.guardian._compute_wards_count()
+        self.assertEqual(self.guardian.wards_count, 1)
+
+    def test_compute_patients_count(self):
+        self.kinesiologist._compute_patients_count()
+        self.assertEqual(self.kinesiologist.patients_count, 1)
+
+    def test_open_related_wards(self):
+        self.env["res.users.link"].create(
+            {"user_id": self.guardian_user.id, "patient_id": self.patient.id}
+        )
+        action = self.guardian.open_related_wards()
+        self.assertEqual(action["domain"], [("id", "in", [self.patient.id])])
+
+    def test_open_related_patients(self):
+        action = self.kinesiologist.open_related_patients()
+        self.assertEqual(action["domain"], [("id", "in", [self.patient.id])])
+
+    def test_get_partner_ids_for_notification(self):
+        guardian1 = self.env["res.users"].create(
+            {
+                "name": "Guardian 1",
+                "login": "guardian1",
+                "email": "guardian1@example.com",
+                "partner_type": "guardian",
+            }
+        )
+        guardian2 = self.env["res.users"].create(
+            {
+                "name": "Guardian 2",
+                "login": "guardian2",
+                "email": "guardian2@example.com",
+                "partner_type": "guardian",
+            }
+        )
+
+        self.env["res.users.link"].create(
+            {"user_id": guardian1.id, "patient_id": self.patient.id}
+        )
+        self.env["res.users.link"].create(
+            {"user_id": guardian2.id, "patient_id": self.patient.id}
+        )
+
+        self.patient_user.self_managed = True
+        partner_ids = self.game_session.get_partner_ids_for_notification()
+        self.assertIn(self.patient.id, partner_ids)
+        self.assertIn(guardian1.partner_id.id, partner_ids)
+        self.assertIn(guardian2.partner_id.id, partner_ids)
+
+        self.patient_user.self_managed = False
+        partner_ids = self.game_session.get_partner_ids_for_notification()
+        self.assertNotIn(self.patient.id, partner_ids)
+        self.assertIn(guardian1.partner_id.id, partner_ids)
+        self.assertIn(guardian2.partner_id.id, partner_ids)
