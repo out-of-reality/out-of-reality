@@ -33,7 +33,7 @@ class ResUsers(models.Model):
                 else:
                     image = image.convert("RGB")
 
-                image_np = np.array(image)
+                image_np = np.asarray(image)
                 encodings = face_recognition.face_encodings(image_np)
                 if encodings:
                     user.face_encoding = base64.b64encode(encodings[0].tobytes())
