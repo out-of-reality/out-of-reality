@@ -57,6 +57,9 @@ jobs:
         run: |
           apt-get update
           apt-get install -y cmake build-essential libopenblas-dev liblapack-dev
+      - name: Install python dependencies
+        run: |
+          pip install httpx
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Check licenses
