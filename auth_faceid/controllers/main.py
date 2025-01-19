@@ -15,7 +15,7 @@ class FaceIDLoginController(http.Controller):
     def verify_face(self, image):
         try:
             image_data = base64.b64decode(image.split(",")[1])
-            captured_image = np.array(Image.open(BytesIO(image_data)).convert("RGB"))
+            captured_image = np.asarray(Image.open(BytesIO(image_data)).convert("RGB"))
 
             captured_face_encodings = face_recognition.face_encodings(captured_image)
             if not captured_face_encodings:
