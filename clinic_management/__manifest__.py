@@ -19,6 +19,10 @@
     ],
     "demo": [
         "demo/health_insurance.xml",
+        "demo/res_partner.xml",
+        "demo/res_users.xml",
+        "demo/res_users_link.xml",
+        "demo/clinic_game_session.xml",
     ],
     "installable": True,
     "auto_install": False,
