@@ -1,0 +1,17 @@
+<odoo noupdate="1">
+    <record id="session_1" model="clinic.game.session">
+        <field name="patient_id" ref="partner_patient_1" />
+        <field name="session_date">2025-01-01</field>
+        <field name="state">new</field>
+    </record>
+    <record id="session_2" model="clinic.game.session">
+        <field name="patient_id" ref="partner_patient_2" />
+        <field name="session_date">2025-01-10</field>
+        <field name="state">done</field>
+    </record>
+    <record id="session_3" model="clinic.game.session">
+        <field name="patient_id" ref="partner_patient_3" />
+        <field name="session_date">2025-01-15</field>
+        <field name="state">new</field>
+    </record>
+</odoo>

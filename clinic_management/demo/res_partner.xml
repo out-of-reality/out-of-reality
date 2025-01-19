@@ -1,0 +1,17 @@
+<odoo noupdate="1">
+    <record id="partner_patient_1" model="res.partner">
+        <field name="name">Juan Pérez</field>
+        <field name="partner_type">patient</field>
+        <field name="self_managed">True</field>
+    </record>
+    <record id="partner_patient_2" model="res.partner">
+        <field name="name">María González</field>
+        <field name="partner_type">patient</field>
+        <field name="self_managed">True</field>
+    </record>
+    <record id="partner_patient_3" model="res.partner">
+        <field name="name">Carlos López</field>
+        <field name="partner_type">patient</field>
+        <field name="self_managed">True</field>
+    </record>
+</odoo>

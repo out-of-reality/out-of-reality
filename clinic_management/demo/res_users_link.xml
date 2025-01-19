@@ -1,0 +1,22 @@
+<odoo noupdate="1">
+    <record id="link_1" model="res.users.link">
+        <field name="patient_id" ref="partner_patient_1" />
+        <field name="user_id" ref="user_guardian_1" />
+    </record>
+    <record id="link_2" model="res.users.link">
+        <field name="patient_id" ref="partner_patient_2" />
+        <field name="user_id" ref="user_guardian_2" />
+    </record>
+    <record id="link_3" model="res.users.link">
+        <field name="patient_id" ref="partner_patient_3" />
+        <field name="user_id" ref="user_guardian_3" />
+    </record>
+    <record id="link_4" model="res.users.link">
+        <field name="patient_id" ref="partner_patient_1" />
+        <field name="user_id" ref="user_kinesiologist_1" />
+    </record>
+    <record id="link_5" model="res.users.link">
+        <field name="patient_id" ref="partner_patient_2" />
+        <field name="user_id" ref="user_kinesiologist_2" />
+    </record>
+</odoo>
