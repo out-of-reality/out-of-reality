@@ -1,4 +1,5 @@
 <odoo>
+    <!-- Tree View -->
     <record id="view_clinic_game_session_tree" model="ir.ui.view">
         <field name="name">clinic.game.session.tree</field>
         <field name="model">clinic.game.session</field>
@@ -10,29 +11,16 @@
         </field>
     </record>
 
+    <!-- Form View -->
     <record id="view_clinic_game_session_form" model="ir.ui.view">
         <field name="name">clinic.game.session.form</field>
         <field name="model">clinic.game.session</field>
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button
-                        name="action_feedback_send"
-                        string="Send by Email"
-                        type="object"
-                        class="btn-primary"
-                    />
-                    <button
-                        name="action_preview_game_session"
-                        string="Preview"
-                        type="object"
-                        class="btn-secondary"
-                    />
-                    <field
-                        name="state"
-                        widget="statusbar"
-                        options="{'clickable': '1'}"
-                    />
+                    <button name="action_feedback_send" string="Send by Email" type="object" class="btn-primary" />
+                    <button name="action_preview_game_session" string="Preview" type="object" class="btn-secondary" />
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}" />
                 </header>
                 <sheet>
                     <group>
@@ -40,10 +28,16 @@
                         <field name="session_date" />
                         <field name="filename" invisible="1" />
                         <field name="video" widget="video_widget" filename="filename" />
+                        <field name="angle_selection_1" widget="selection"/>
+                        <field name="angle_selection_2" widget="selection"/>
                     </group>
                     <notebook>
                         <page string="Feedback">
                             <field name="feedback" />
+                        </page>
+                        <page string="Graphics">
+                            <field name="grafico_1" widget="mpld3_chart" nolabel="1"/>
+                            <field name="grafico_2" widget="mpld3_chart" nolabel="1"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -56,44 +50,28 @@
         </field>
     </record>
 
+    <!-- Search View -->
     <record id="view_clinic_game_session_search" model="ir.ui.view">
         <field name="name">clinic.game.session.search</field>
         <field name="model">clinic.game.session</field>
         <field name="arch" type="xml">
             <search>
-                <filter
-                    string="My patients"
-                    name="filter_my_patients"
-                    domain="[('patient_id.patient_link_ids.user_id', '=', uid)]"
-                />
-                <filter
-                    string="Patient"
-                    name="group_by_patient"
-                    context="{'group_by': 'patient_id'}"
-                />
-                <filter
-                    string="Session Date"
-                    name="group_by_session_date"
-                    context="{'group_by': 'session_date:day'}"
-                />
-                <filter
-                    string="State"
-                    name="group_by_sstate"
-                    context="{'group_by': 'state'}"
-                />
+                <filter string="My patients" name="filter_my_patients" domain="[('patient_id.patient_link_ids.user_id', '=', uid)]"/>
+                <filter string="Patient" name="group_by_patient" context="{'group_by': 'patient_id'}"/>
+                <filter string="Session Date" name="group_by_session_date" context="{'group_by': 'session_date:day'}"/>
+                <filter string="State" name="group_by_state" context="{'group_by': 'state'}"/>
             </search>
         </field>
     </record>
 
+    <!-- Action Window -->
     <record id="action_clinic_game_session" model="ir.actions.act_window">
         <field name="name">Clinic Game Sessions</field>
         <field name="res_model">clinic.game.session</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_clinic_game_session_tree" />
-        <field name="search_view_id" ref="view_clinic_game_session_search" />
-        <field
-            name="context"
-        >{"search_default_group_by_patient": 1, "search_default_group_by_session_date": 1}</field>
+        <field name="view_id" ref="view_clinic_game_session_tree"/>
+        <field name="search_view_id" ref="view_clinic_game_session_search"/>
+        <field name="context">{'search_default_group_by_patient': 1, 'search_default_group_by_session_date': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No game sessions available yet.

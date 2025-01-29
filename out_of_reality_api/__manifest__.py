@@ -5,7 +5,7 @@
     "author": "Out of reality",
     "license": "LGPL-3",
     "website": "https://github.com/out-of-reality/out-of-reality",
-    "depends": ["fastapi", "auth_faceid"],
+    "depends": ["fastapi", "auth_faceid", 'clinic_management'],
     "data": [
         "data/api_data.xml",
         "security/security.xml",
