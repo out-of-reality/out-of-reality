@@ -1,0 +1,22 @@
+<odoo noupdate="1">
+    <record id="ir_cron_process_pending_game_session_videos" model="ir.cron">
+        <field name="name">Game Sessions: Process Pending Videos</field>
+        <field name="model_id" ref="model_clinic_game_session" />
+        <field name="state">code</field>
+        <field name="code">model._cron_process_pending_videos()</field>
+        <field name="numbercall">-1</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="active" eval="True" />
+    </record>
+    <record id="ir_cron_generate_pending_annotated_videos" model="ir.cron">
+        <field name="name">Game Sessions: Generate Annotated Videos</field>
+        <field name="model_id" ref="model_clinic_game_session" />
+        <field name="state">code</field>
+        <field name="code">model._cron_generate_pending_annotations()</field>
+        <field name="numbercall">-1</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True" />
+    </record>
+</odoo>

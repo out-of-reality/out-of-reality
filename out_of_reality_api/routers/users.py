@@ -7,10 +7,10 @@ from jose import jwt
 from odoo.api import Environment
 from odoo.exceptions import AccessDenied
 
+from odoo.addons.auth_faceid.utils import FaceIDService
 from odoo.addons.base.models.res_partner import Partner
 from odoo.addons.fastapi.dependencies import authenticated_partner, odoo_env
 
-from ..controllers.main import FaceIDFastAPIController
 from ..schemas import UserData, UserFaceIDLogin, UserLogin, UserResponse
 
 ALGORITHM = "HS256"
@@ -74,30 +74,18 @@ def whoami(partner: Annotated[Partner, Depends(authenticated_partner)]) -> UserD
 def faceid_login(
     user_login: UserFaceIDLogin, env: Annotated[Environment, Depends(odoo_env)]
 ) -> UserResponse:
-    image = user_login.image
+    result = FaceIDService.identify_user(user_login.image, env)
 
-    try:
-        faceid_controller = FaceIDFastAPIController()
-        response = faceid_controller.verify_face(image)
+    if result["success"]:
+        user = result["user"]
+        access_token = create_access_token(
+            data={"sub": user.login},
+            secret_key=env["ir.config_parameter"].sudo().get_param("jwt.secret_key"),
+        )
+        return UserResponse(
+            id=user.id, name=user.name, email=user.email, access_token=access_token
+        )
 
-        if response.get("success"):
-            matched_user = response.get("user")
-
-            access_token = create_access_token(
-                data={"sub": matched_user.login},
-                secret_key=env["ir.config_parameter"]
-                .sudo()
-                .get_param("jwt.secret_key"),
-            )
-
-            return UserResponse(
-                id=matched_user.id,
-                name=matched_user.name,
-                email=matched_user.email,
-                access_token=access_token,
-            )
-    except Exception as err:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="FaceID verification failed",
-        ) from err
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED, detail=result["message"]
+    )

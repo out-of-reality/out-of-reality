@@ -4,18 +4,26 @@
     "author": "Out of reality",
     "license": "LGPL-3",
     "website": "https://github.com/out-of-reality/out-of-reality",
-    "depends": ["web", "portal", "contacts"],
+    "depends": ["web", "portal", "contacts", "web_widget_mpld3_chart"],
+    "external_dependencies": {
+        "python": ["opencv-python", "matplotlib", "mediapipe", "numpy"]
+    },
     "data": [
         "data/mail_template_data.xml",
+        "data/clinic_joint_angle_tag.xml",
+        "data/ir_cron.xml",
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
+        "wizards/clinic_game_session_comparison_wizard.xml",
         "views/clinic_game_session_views.xml",
         "views/res_partner_views.xml",
         "views/health_insurance_views.xml",
         "views/res_users_views.xml",
         "views/clinic_management_menu.xml",
         "views/clinic_portal_templates.xml",
+        "views/pose_definition_views.xml",
+        "views/level_configuration_views.xml",
     ],
     "demo": [
         "demo/health_insurance.xml",
