@@ -22,6 +22,8 @@
         "views/res_users_views.xml",
         "views/clinic_management_menu.xml",
         "views/clinic_portal_templates.xml",
+        "views/pose_definition_views.xml",
+        "views/level_configuration_views.xml",
     ],
     "demo": [
         "demo/health_insurance.xml",
