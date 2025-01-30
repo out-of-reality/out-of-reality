@@ -4,7 +4,10 @@
     "author": "Out of reality",
     "license": "LGPL-3",
     "website": "https://github.com/out-of-reality/out-of-reality",
-    "depends": ["web", "portal", "contacts"],
+    "depends": ["web", "portal", "contacts", "web_widget_mpld3_chart"],
+    "external_dependencies": {
+        "python": ["opencv-python", "matplotlib", "mediapipe", "numpy"]
+    },
     "data": [
         "data/mail_template_data.xml",
         "security/res_groups.xml",
