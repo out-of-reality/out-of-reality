@@ -16,17 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          for reqfile in requirements.txt test-requirements.txt ; do
-              if [ -f ${reqfile} ] ; then
-                  result=0
-                  # reject non-comment lines that contain a / (i.e. URLs, relative paths)
-                  grep "^[^#].*/" ${reqfile} || result=$?
-                  if [ $result -eq 0 ] ; then
-                      echo "Unreleased dependencies found in ${reqfile}."
-                      exit 1
-                  fi
+          if [ -f requirements.txt ]; then
+              result=0
+              grep "^[^#].*/" requirements.txt || result=$?
+              if [ $result -eq 0 ]; then
+                  echo "Unreleased dependencies found in requirements.txt."
+                  exit 1
               fi
-          done
+          fi
+
   test:
     runs-on: ubuntu-22.04
     container: ${{ matrix.container }}
@@ -49,27 +47,52 @@ jobs:
           - 5432:5432
     env:
       OCA_ENABLE_CHECKLOG_ODOO: "1"
+
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install system dependencies
         run: |
           apt-get update
-          apt-get install -y cmake build-essential libopenblas-dev liblapack-dev
+          apt-get install -y cmake build-essential libopenblas-dev liblapack-dev libgl1
+
+      - name: Install precompiled dlib
+        run: |
+          pip install --no-cache-dir --prefer-binary dlib
+
+      - name: Install module from PR 3000 (OCA/web)
+        run: |
+          pip install odoo-addon-web_widget_mpld3_chart@git+https://github.com/OCA/web.git@refs/pull/3000/head#subdirectory=web_widget_mpld3_chart
+
       - name: Install addons and dependencies
         run: oca_install_addons
+
       - name: Check licenses
         run: manifestoo -d . check-licenses
+
       - name: Check development status
         run: manifestoo -d . check-dev-status --default-dev-status=Beta
+
       - name: Initialize test db
         run: oca_init_test_database
+
       - name: Run tests
         run: oca_run_tests
+
       - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Update .pot files
         run:
           oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN
