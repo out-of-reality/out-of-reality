@@ -154,7 +154,7 @@ msgstr ""
 
 #. module: clinic_management
 #: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__done
-msgid "Donee"
+msgid "Done"
 msgstr ""
 
 #. module: clinic_management
