@@ -1,7 +1,5 @@
 from odoo import _, api, fields, http, models
 from odoo.exceptions import ValidationError
-
-
 class ClinicGameSession(models.Model):
     _name = "clinic.game.session"
     _description = "Clinic Game Session"
