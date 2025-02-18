@@ -15,7 +15,7 @@ class ClinicGameSession(models.Model):
     filename = fields.Char()
     session_date = fields.Date(default=fields.Datetime.now)
     state = fields.Selection(
-        [("new", "New"), ("done", "Done")], default="new", tracking=True
+        [("new", "New"), ("done", "Donee")], default="new", tracking=True
     )
     feedback = fields.Html()
 

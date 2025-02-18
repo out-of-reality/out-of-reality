@@ -46,15 +46,3 @@ jobs:
               echo "$newfiles"
               exit 1
           fi
-      - name: Send pre-commit status to GitHub
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'Authorization: Bearer ${{ secrets.PRECOMMIT }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "state": "${{ job.status }}",
-            "context": "pre-commit",
-            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }' \
-          --fail
