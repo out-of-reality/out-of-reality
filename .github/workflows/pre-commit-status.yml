@@ -9,18 +9,39 @@ jobs:
   update_status:
     runs-on: ubuntu-latest
     permissions:
-      statuses: write 
+      checks: write
     steps:
-      - name: Update pre-commit status in GitHub Checks
-        run: |
-          curl --request POST \
-          --url "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.workflow_run.head_commit.id }}" \
-          --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          --header "content-type: application/json" \
-          --data '{
-            "state": "${{ github.event.workflow_run.conclusion }}",
-            "context": "pre-commit / pre-commit (pull_request)",
-            "target_url": "${{ github.event.workflow_run.html_url }}",
-            "description": "Pre-commit finalizado con estado: ${{ github.event.workflow_run.conclusion }}"
-          }' \
-          --fail
+      - name: Update pre-commit status
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const sha = "${{ github.event.workflow_run.head_sha }}";
+            const conclusion = "${{ github.event.workflow_run.conclusion }}";
+            const checkName = "pre-commit / pre-commit (pull_request)";
+
+            // Buscar el check existente
+            const checks = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: sha
+            });
+
+            const existingCheck = checks.data.check_runs.find(c => c.name === checkName);
+
+            if (existingCheck) {
+              // Si ya existe, lo actualizamos
+              await github.rest.checks.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                check_run_id: existingCheck.id,
+                status: "completed",
+                conclusion: conclusion,
+                details_url: "https://github.com/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}",
+                output: {
+                  title: "Pre-commit Check",
+                  summary: `Estado final: **${conclusion}**`,
+                  text: "Detalles en el enlace de ejecución."
+                }
+              });
+            }
