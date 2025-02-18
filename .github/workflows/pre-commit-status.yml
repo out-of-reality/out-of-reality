@@ -1,0 +1,26 @@
+name: Update Pre-commit Status
+on:
+  workflow_run:
+    workflows: ["pre-commit"]
+    types:
+      - completed
+
+jobs:
+  update_status:
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write 
+    steps:
+      - name: Update pre-commit status in GitHub Checks
+        run: |
+          curl --request POST \
+          --url "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.workflow_run.head_commit.id }}" \
+          --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          --header "content-type: application/json" \
+          --data '{
+            "state": "${{ github.event.workflow_run.conclusion }}",
+            "context": "pre-commit / pre-commit (pull_request)",
+            "target_url": "${{ github.event.workflow_run.html_url }}",
+            "description": "Pre-commit finalizado con estado: ${{ github.event.workflow_run.conclusion }}"
+          }' \
+          --fail
