@@ -1,0 +1,21 @@
+name: update-pot
+
+on:
+  push:
+    branches:
+      - "17.0"
+
+jobs:
+  update-pot:
+    runs-on: ubuntu-22.04
+    container: ghcr.io/oca/oca-ci/py3.10-odoo17.0:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Update .pot files
+        run: |
+          oca_export_and_push_pot \
+            https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
+        if: ${{ github.repository_owner == 'out-of-reality' }}
