@@ -50,11 +50,11 @@ Authors
 Contributors
 ------------
 
--  `Out of reality <https://erp.francoleyes.xyz/>`__:
+- `Out of reality <https://erp.francoleyes.xyz/>`__:
 
-   -  Franco Leyes
-   -  Augusto Cáceres
-   -  Santiago Agüero
+  - Franco Leyes
+  - Augusto Cáceres
+  - Santiago Agüero
 
 Maintainers
 -----------

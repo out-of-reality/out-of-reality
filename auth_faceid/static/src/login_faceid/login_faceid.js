@@ -1,79 +1,92 @@
 /** @odoo-module **/
 
-import {Component, useRef} from "@odoo/owl";
 import {_t} from "@web/core/l10n/translation";
-import {registry} from "@web/core/registry";
-import {useService} from "@web/core/utils/hooks";
+import publicWidget from "@web/legacy/js/public/public_widget";
 
-export class FaceIDLogin extends Component {
-    static template = "auth_faceid.FaceIDLogin";
-    videoRef = useRef("videoElement");
-    stream = null;
+publicWidget.registry.FaceIDLogin = publicWidget.Widget.extend({
+    selector: "#faceidBtn",
+    events: {
+        click: "_onOpenModal",
+    },
 
-    setup() {
-        this.rpc = useService("rpc");
-        this.notification = useService("notification");
-    }
+    init() {
+        this._super(...arguments);
+        this.notification = this.bindService("notification");
+    },
 
-    async openModal() {
+    _onOpenModal() {
         const modal = document.getElementById("faceidModal");
+        const video = document.getElementById("faceVideo");
+        const closeModalBtns = [
+            document.getElementById("closeFaceModal"),
+            document.getElementById("closeFaceModal2"),
+        ];
+        const captureBtn = document.getElementById("captureFace");
+        const spinner = document.getElementById("loadingSpinner");
+
+        let stream = null;
         modal.style.display = "block";
 
-        try {
-            this.stream = await navigator.mediaDevices.getUserMedia({video: true});
-            this.videoRef.el.srcObject = this.stream;
-            this.videoRef.el.play();
-        } catch (error) {
-            this.notification.add(_t("Failed to access the camera."), {type: "danger"});
-        }
-    }
+        navigator.mediaDevices
+            .getUserMedia({video: true})
+            .then((mediaStream) => {
+                stream = mediaStream;
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(() => this._notifyError(_t("Unable to access the camera.")));
 
-    closeModal() {
-        const modal = document.getElementById("faceidModal");
-        modal.style.display = "none";
-
-        if (this.stream) {
-            const tracks = this.stream.getTracks();
-            tracks.forEach((track) => track.stop());
-            this.stream = null;
-        }
-    }
-
-    async captureImage() {
-        const canvas = document.createElement("canvas");
-        canvas.width = this.videoRef.el.videoWidth;
-        canvas.height = this.videoRef.el.videoHeight;
-        const context = canvas.getContext("2d");
-        context.drawImage(this.videoRef.el, 0, 0, canvas.width, canvas.height);
-
-        const image = canvas.toDataURL("image/png");
-        this.closeModal();
-
-        const spinner = document.getElementById("loadingSpinner");
-        spinner.classList.remove("d-none");
-        spinner.classList.add("d-flex");
-
-        await this.verifyFace(image);
-
-        spinner.classList.remove("d-flex");
-        spinner.classList.add("d-none");
-    }
-
-    async verifyFace(image) {
-        try {
-            const result = await this.rpc("/web/login/verify_face", {image: image});
-            if (result.success) {
-                this.notification.add(result.message, {type: "success"});
-                window.location.href = "/web";
-            } else {
-                this.notification.add(result.message, {type: "danger"});
+        const closeModal = () => {
+            modal.style.display = "none";
+            if (stream) {
+                stream.getTracks().forEach((track) => track.stop());
+                stream = null;
             }
-        } catch (error) {
-            this.notification.add(_t("An error occurred while verifying the face."), {
-                type: "danger",
-            });
-        }
-    }
-}
+        };
 
-registry.category("public_components").add("auth_faceid.FaceIDLogin", FaceIDLogin);
+        closeModalBtns.forEach((btn) => btn?.addEventListener("click", closeModal));
+
+        captureBtn.addEventListener(
+            "click",
+            async () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const image = canvas.toDataURL("image/png");
+                closeModal();
+
+                spinner.classList.remove("d-none");
+                spinner.classList.add("d-flex");
+
+                const response = await fetch("/web/login/verify_face", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({image}),
+                });
+
+                spinner.classList.remove("d-flex");
+                spinner.classList.add("d-none");
+
+                const json = await response.json();
+                const result = json.result;
+
+                if (result.success) {
+                    window.location.href = "/web";
+                } else {
+                    this._notifyError(
+                        result.message || _t("Face verification failed.")
+                    );
+                }
+            },
+            {once: true}
+        );
+    },
+
+    _notifyError(message) {
+        this.notification.add(message, {type: "danger"});
+    },
+});

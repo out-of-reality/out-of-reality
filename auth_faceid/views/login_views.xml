@@ -1,7 +1,45 @@
 <odoo>
-    <template id="login" inherit_id="web.login" name="Login FaceID">
+    <template id="login" inherit_id="web.login" name="Login FaceID" priority="100">
         <xpath expr="//button[hasclass('btn-primary')]" position="after">
-            <owl-component name="auth_faceid.FaceIDLogin" />
+            <button type="button" id="faceidBtn" class="btn btn-secondary w-100">
+                Log in FaceID
+            </button>
+
+            <div id="faceidModal" class="modal" style="display:none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">FaceID Authentication</h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                id="closeFaceModal"
+                            />
+                        </div>
+                        <div class="modal-body">
+                            <video id="faceVideo" autoplay="autoplay" class="w-100" />
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                id="closeFaceModal2"
+                            >Cancel</button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                id="captureFace"
+                            >Capture</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingSpinner" class="d-none justify-content-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
         </xpath>
     </template>
 </odoo>

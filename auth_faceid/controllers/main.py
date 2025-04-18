@@ -1,55 +1,70 @@
-import base64
-from io import BytesIO
+import json
 
-import face_recognition
-import numpy as np
-from PIL import Image
+import requests
 
 from odoo import _, http
 from odoo.exceptions import AccessDenied
 from odoo.http import request
 
+FACE_SERVICE_URL = "http://face_recognition:5000"
+
 
 class FaceIDLoginController(http.Controller):
-    @http.route("/web/login/verify_face", type="json", auth="public", methods=["POST"])
-    def verify_face(self, image):
-        try:
-            image_data = base64.b64decode(image.split(",")[1])
-            captured_image = np.asarray(Image.open(BytesIO(image_data)).convert("RGB"))
+    @http.route(
+        "/web/login/verify_face",
+        type="json",
+        auth="public",
+        methods=["POST"],
+        csrf=False,
+    )
+    def verify_face(self):
+        image = json.loads(request.httprequest.data.decode("utf-8")).get("image")
+        if not image:
+            return {"success": False, "message": _("No image data received.")}
 
-            captured_face_encodings = face_recognition.face_encodings(captured_image)
-            if not captured_face_encodings:
+        try:
+            response = requests.post(
+                f"{FACE_SERVICE_URL}/face_encoding",
+                json={"image_b64": image},
+                timeout=5,
+            )
+            if response.status_code != 200:
                 return {
                     "success": False,
                     "message": _("No face detected in the captured image."),
                 }
 
-            captured_face_encoding = captured_face_encodings[0]
+            captured_encoding_b64 = response.json().get("encoding")
 
             users = (
                 request.env["res.users"].sudo().search([("face_encoding", "!=", False)])
             )
-
             if not users:
                 return {
                     "success": False,
                     "message": _("No users with registered face encodings found."),
                 }
 
-            user_face_encodings = [
-                np.frombuffer(base64.b64decode(user.face_encoding), dtype=np.float64)
-                for user in users
-            ]
-            matches = face_recognition.compare_faces(
-                user_face_encodings, captured_face_encoding
+            user_encodings = [user.face_encoding.decode() for user in users]
+
+            response = requests.post(
+                f"{FACE_SERVICE_URL}/compare_faces",
+                json={
+                    "captured_encoding": captured_encoding_b64,
+                    "user_encodings": user_encodings,
+                },
+                timeout=5,
             )
 
-            matched_user = next(
-                (user for user, match in zip(users, matches, strict=True) if match),
-                None,
-            )
+            if response.status_code != 200:
+                return {
+                    "success": False,
+                    "message": _("Error comparing faces: %s") % response.text,
+                }
 
-            if matched_user:
+            matched_index = response.json().get("matched_index")
+            if matched_index is not None:
+                matched_user = users[matched_index]
                 return self._login_user(matched_user)
 
             return {
