@@ -82,5 +82,6 @@
 
     <record id="base.user_admin" model="res.users">
         <field name="groups_id" eval="[(4, ref('group_clinic_management_admin'))]" />
+        <field name="tz" eval="False" />
     </record>
 </odoo>
