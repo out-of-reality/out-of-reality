@@ -1,14 +1,12 @@
-import base64
 import logging
-from io import BytesIO
 
-import face_recognition
-import numpy as np
-from PIL import Image, UnidentifiedImageError
+import requests
 
 from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
+
+FACE_API_URL = "http://face_recognition:5000"
 
 
 class ResUsers(models.Model):
@@ -18,28 +16,20 @@ class ResUsers(models.Model):
 
     @api.depends("image_512")
     def _compute_face_encoding(self):
+        users = self.filtered("image_512")
         for user in self.filtered("image_512"):
             try:
-                image_data = base64.b64decode(user.image_512)
-                image = Image.open(BytesIO(image_data))
-
-                if image.mode in ("RGBA", "LA") or (
-                    image.mode == "P" and "transparency" in image.info
-                ):
-                    image = image.convert("RGBA")
-                    image = Image.alpha_composite(
-                        Image.new("RGB", image.size, (255, 255, 255)), image
-                    )
-                else:
-                    image = image.convert("RGB")
-
-                image_np = np.asarray(image)
-                encodings = face_recognition.face_encodings(image_np)
-                if encodings:
-                    user.face_encoding = base64.b64encode(encodings[0].tobytes())
+                image_b64 = f"data:image/jpeg;base64,{user.image_512.decode()}"
+                response = requests.post(
+                    f"{FACE_API_URL}/face_encoding",
+                    json={"image_b64": image_b64},
+                    timeout=5,
+                )
+                if response.status_code == 200:
+                    user.face_encoding = response.json()["encoding"].encode()
                 else:
                     user.face_encoding = False
-
-            except (UnidentifiedImageError, ValueError, RuntimeError) as e:
-                _logger.info(f"Failed to process image for user {user.id}: {e}")
+            except Exception as e:
+                _logger.info(f"Face encoding error for user {user.id}: {e}")
                 user.face_encoding = False
+        (self - users).face_encoding = False
