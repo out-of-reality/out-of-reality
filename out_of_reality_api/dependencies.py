@@ -30,6 +30,11 @@ def authenticate_jwt(
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
+        user = env["res.users"].sudo().search([("login", "=", username)], limit=1)
+        if not user:
+            raise credentials_exception
+        return user
+
     except JWTError as err:
         raise credentials_exception from err
 
