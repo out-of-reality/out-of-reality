@@ -7,7 +7,12 @@ class ResUsers(models.Model):
 
     def _check_credentials(self, password, env):
         user = self.env.user
-        if user and user.partner_type == "patient" and not user.self_managed:
+        if (
+            user
+            and user.partner_type == "patient"
+            and not user.self_managed
+            and not user._is_admin()
+        ):
             raise AccessDenied(
                 _("Access denied: Your profile is not marked as self-managed.")
             )
