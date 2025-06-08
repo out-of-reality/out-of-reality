@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-
     <t t-name="video_widget.VideoField">
         <t t-call="web.BinaryField" />
-        <t t-if="props.record.data[props.name]">
-            <video controls="controls" class="w-100" t-att-alt="fileName">
-                <source t-att-src="url" />
-                Your browser does not support the video tag.
-            </video>
-        </t>
+        <div class="o_field_video_widget">
+            <t t-if="props.record.data[props.name]">
+                <video
+                    controls="controls"
+                    class="w-100 img-fluid"
+                    t-att-alt="fileName"
+                    preload="metadata"
+                >
+                    <source t-att-src="url" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </t>
+            <t t-else="">
+                <span>No video available.</span>
+            </t>
+        </div>
     </t>
-
 </templates>

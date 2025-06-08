@@ -1,0 +1,42 @@
+<odoo noupdate="1">
+    <record id="angle_tag_right_elbow" model="clinic.joint.angle.tag">
+        <field name="name">RIGHT_ELBOW</field>
+        <field name="display_name_tag">Right Elbow</field>
+    </record>
+    <record id="angle_tag_left_elbow" model="clinic.joint.angle.tag">
+        <field name="name">LEFT_ELBOW</field>
+        <field name="display_name_tag">Left Elbow</field>
+    </record>
+    <record id="angle_tag_right_shoulder" model="clinic.joint.angle.tag">
+        <field name="name">RIGHT_SHOULDER</field>
+        <field name="display_name_tag">Right Shoulder</field>
+    </record>
+    <record id="angle_tag_left_shoulder" model="clinic.joint.angle.tag">
+        <field name="name">LEFT_SHOULDER</field>
+        <field name="display_name_tag">Left Shoulder</field>
+    </record>
+    <record id="angle_tag_right_knee" model="clinic.joint.angle.tag">
+        <field name="name">RIGHT_KNEE</field>
+        <field name="display_name_tag">Right Knee</field>
+    </record>
+    <record id="angle_tag_left_knee" model="clinic.joint.angle.tag">
+        <field name="name">LEFT_KNEE</field>
+        <field name="display_name_tag">Left Knee</field>
+    </record>
+    <record id="angle_tag_right_hip" model="clinic.joint.angle.tag">
+        <field name="name">RIGHT_HIP</field>
+        <field name="display_name_tag">Right Hip</field>
+    </record>
+    <record id="angle_tag_left_hip" model="clinic.joint.angle.tag">
+        <field name="name">LEFT_HIP</field>
+        <field name="display_name_tag">Left Hip</field>
+    </record>
+    <record id="angle_tag_right_ankle" model="clinic.joint.angle.tag">
+        <field name="name">RIGHT_ANKLE</field>
+        <field name="display_name_tag">Right Ankle</field>
+    </record>
+    <record id="angle_tag_left_ankle" model="clinic.joint.angle.tag">
+        <field name="name">LEFT_ANKLE</field>
+        <field name="display_name_tag">Left Ankle</field>
+    </record>
+</odoo>

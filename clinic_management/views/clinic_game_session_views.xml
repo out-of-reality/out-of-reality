@@ -3,9 +3,18 @@
         <field name="name">clinic.game.session.tree</field>
         <field name="model">clinic.game.session</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree multi_edit="1">
+                <header>
+                    <button
+                        name="action_compare_sessions"
+                        string="Compare Sessions"
+                        type="object"
+                        class="btn-primary"
+                    />
+                </header>
                 <field name="patient_id" />
                 <field name="session_date" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -16,6 +25,14 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button
+                        name="action_generate_annotated_video"
+                        string="Generate Annotated Video"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'processed' or not selected_angles_for_chart_ids or annotated_video_state == 'pending'"
+                        help="Generates a new video with the selected angles drawn on it. This may take some time and will run in the background."
+                    />
                     <button
                         name="action_feedback_send"
                         string="Send by Email"
@@ -31,17 +48,105 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        options="{'clickable': '1'}"
+                        statusbar_visible="pending_processing,processed"
+                        invisible="not video"
                     />
                 </header>
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Processing Failed"
+                        bg_color="bg-danger"
+                        invisible="state != 'processing_failed'"
+                    />
                     <group>
-                        <field name="patient_id" />
-                        <field name="session_date" />
-                        <field name="filename" invisible="1" />
-                        <field name="video" widget="video_widget" filename="filename" />
+                        <group string="General Information">
+                            <field
+                                name="patient_id"
+                                options="{'no_create_edit': True}"
+                            />
+                            <field name="session_date" />
+                        </group>
+                        <group
+                            string="Angle Selection for Combined Chart"
+                            invisible="state != 'processed'"
+                        >
+                            <field
+                                name="selected_angles_for_chart_ids"
+                                widget="many2many_tags"
+                                options="{'no_create_edit': True}"
+                                placeholder="Select angles..."
+                                readonly="state != 'processed'"
+                            />
+                            <field
+                                name="chart_display_separate"
+                                readonly="state == 'pending_processing'"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Video Information">
+                            <field name="filename" invisible="1" />
+                            <field
+                                name="video"
+                                widget="video_widget"
+                                filename="filename"
+                                string=""
+                            />
+                        </group>
+                        <group
+                            string="Annotated Video"
+                            name="group_annotated_video"
+                            invisible="not video_annotated and annotated_video_state != 'pending'"
+                        >
+                            <field name="annotated_video_state" invisible="1" />
+                            <field name="filename_annotated" invisible="1" />
+                            <field
+                                name="video_annotated"
+                                widget="video_widget"
+                                filename="filename_annotated"
+                                invisible="annotated_video_state != 'done'"
+                                string=""
+                            />
+                        </group>
                     </group>
                     <notebook>
+                        <page
+                            string="Joint Angle Chart"
+                            name="page_charts"
+                            invisible="not video"
+                        >
+                            <group>
+                                <field
+                                    name="joint_angle_chart_combined"
+                                    widget="mpld3_chart"
+                                    nolabel="1"
+                                    invisible="state != 'processed' or joint_angle_chart_combined == {}"
+                                />
+                            </group>
+                             <div
+                                class="alert alert-info text-center"
+                                role="alert"
+                                invisible="state != 'pending_processing'"
+                            >
+                                This session's video is pending processing.
+                                The combined chart will be available once processing is complete.
+                            </div>
+                            <div
+                                class="alert alert-warning text-center"
+                                role="alert"
+                                invisible="state != 'processing_failed'"
+                            >
+                                Video processing failed.
+                            </div>
+                             <div
+                                class="alert alert-info text-center"
+                                role="alert"
+                                invisible="selected_angles_for_chart_ids or state != 'processed'"
+                            >
+                                Select angles above to display their graphs.
+                            </div>
+                        </page>
                         <page string="Feedback">
                             <field name="feedback" />
                         </page>
@@ -67,20 +172,38 @@
                     domain="[('patient_id.patient_link_ids.user_id', '=', uid)]"
                 />
                 <filter
-                    string="Patient"
-                    name="group_by_patient"
-                    context="{'group_by': 'patient_id'}"
+                    string="Pending Processing"
+                    name="filter_pending_processing"
+                    domain="[('state', '=', 'pending_processing')]"
                 />
                 <filter
-                    string="Session Date"
-                    name="group_by_session_date"
-                    context="{'group_by': 'session_date:day'}"
+                    string="Processing Failed"
+                    name="filter_processing_failed"
+                    domain="[('state', '=', 'processing_failed')]"
                 />
                 <filter
-                    string="State"
-                    name="group_by_sstate"
-                    context="{'group_by': 'state'}"
+                    string="Processed"
+                    name="filter_processed"
+                    domain="[('state', '=', 'processed')]"
                 />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Patient"
+                        name="group_by_patient"
+                        context="{'group_by': 'patient_id'}"
+                    />
+                    <filter
+                        string="Session Date"
+                        name="group_by_session_date"
+                        context="{'group_by': 'session_date:month'}"
+                    />
+                    <filter
+                        string="Status"
+                        name="group_by_state"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
             </search>
         </field>
     </record>
@@ -91,9 +214,7 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_clinic_game_session_tree" />
         <field name="search_view_id" ref="view_clinic_game_session_search" />
-        <field
-            name="context"
-        >{"search_default_group_by_patient": 1, "search_default_group_by_session_date": 1}</field>
+        <field name="context">{"search_default_group_by_patient": 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No game sessions available yet.
