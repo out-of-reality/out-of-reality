@@ -1,0 +1,84 @@
+<odoo>
+    <record id="view_clinic_game_session_comparison_wizard_form" model="ir.ui.view">
+        <field name="name">clinic.game.session.comparison.wizard.form</field>
+        <field name="model">clinic.game.session.comparison.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Compare Game Sessions">
+                <div
+                    class="alert alert-info text-center"
+                    role="alert"
+                    invisible="comparison_chart_data and comparison_chart_data != '{}'"
+                >
+                    Select sessions and angles to generate the comparison chart.
+                </div>
+                <sheet>
+                    <group>
+                        <field
+                            name="session_ids"
+                            widget="many2many_tags"
+                            options="{'no_create_edit': True, 'no_quick_create': True}"
+                        />
+                        <field
+                            name="angle_tag_ids"
+                            widget="many2many_tags"
+                            options="{'no_create_edit': True, 'no_quick_create': True}"
+                        />
+                    </group>
+                    <group string="Comparison Chart" name="group_comparison_chart">
+                        <field
+                            name="comparison_chart_data"
+                            widget="mpld3_chart"
+                            nolabel="1"
+                        />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        string="View chart in full screen"
+                        type="object"
+                        name="action_open_fullscreen_chart"
+                        class="btn-primary"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        id="view_clinic_game_session_comparison_wizard_fullchart_form"
+        model="ir.ui.view"
+    >
+        <field name="name">clinic.game.session.comparison.wizard.fullchart.form</field>
+        <field name="model">clinic.game.session.comparison.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div
+                    class="alert alert-info text-center"
+                    role="alert"
+                    invisible="comparison_chart_data and comparison_chart_data != '{}'"
+                >
+                    Select sessions and angles to generate the comparison chart.
+                </div>
+                <group>
+                    <field
+                        name="session_ids"
+                        widget="many2many_tags"
+                        options="{'no_create_edit': True, 'no_quick_create': True}"
+                    />
+                    <field
+                        name="angle_tag_ids"
+                        widget="many2many_tags"
+                        options="{'no_create_edit': True, 'no_quick_create': True}"
+                    />
+                </group>
+                <group string="Comparison Chart" name="group_comparison_chart">
+                    <field
+                        name="comparison_chart_data"
+                        widget="mpld3_chart"
+                        nolabel="1"
+                    />
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

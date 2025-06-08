@@ -10,9 +10,12 @@
     },
     "data": [
         "data/mail_template_data.xml",
+        "data/clinic_joint_angle_tag.xml",
+        "data/ir_cron.xml",
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
+        "wizards/clinic_game_session_comparison_wizard.xml",
         "views/clinic_game_session_views.xml",
         "views/res_partner_views.xml",
         "views/health_insurance_views.xml",
