@@ -4,6 +4,7 @@ from .videos import router as videos_router
 from .poses import router as poses_router
 from .levels import router as levels_router
 
+
 router = APIRouter()
 router.include_router(users_router)
 router.include_router(videos_router)
