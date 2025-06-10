@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista de Lista para Poses -->
+    <record id="view_pose_definition_tree" model="ir.ui.view">
+        <field name="name">pose.definition.tree</field>
+        <field name="model">pose.definition</field>
+        <field name="arch" type="xml">
+            <tree string="Definiciones de Poses" decoration-muted="not active">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Vista de Formulario para Poses -->
+    <record id="view_pose_definition_form" model="ir.ui.view">
+        <field name="name">pose.definition.form</field>
+        <field name="model">pose.definition</field>
+        <field name="arch" type="xml">
+            <form string="Definición de Pose">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="Ej: Sentadilla Lateral"/>
+                            <field name="require_feet_on_ground"/>
+                        </group>
+                        <group>
+                            <field name="active" string="Activo" help="Desmarca para desactivar esta definición de pose sin eliminarla."/>
+                            <field name="foot_tolerance_y">
+                                <visibility invisible="require_feet_on_ground == False"/>
+                            </field>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Descripción">
+                            <field name="description" placeholder="Describe esta pose y cómo debe ejecutarse..."/>
+                        </page>
+
+                        <page string="Requisitos de Ángulos">
+                            <field name="angle_requirements_ids">
+                                <tree string="Requisitos de Ángulos" editable="bottom">
+                                    <field name="angle_type"/>
+                                    <field name="min_angle"/>
+                                    <field name="max_angle"/>
+                                    <field name="description" optional="show"/>
+                                </tree>
+                                <form string="Requisito de Ángulo">
+                                    <group>
+                                        <group>
+                                            <field name="angle_type"/>
+                                        </group>
+                                        <group>
+                                            <field name="min_angle"/>
+                                            <field name="max_angle"/>
+                                        </group>
+                                    </group>
+                                    <field name="description" placeholder="Descripción opcional del requisito..."/>
+                                </form>
+                            </field>
+                        </page>
+
+                        <page string="Información de Ángulos">
+                            <div class="alert alert-info">
+                                <h4>Referencia de Ángulos Articulares Disponibles:</h4>
+                                <ul>
+                                    <li><strong>Codo derecho:</strong> Hombro derecho → Codo derecho → Muñeca derecha</li>
+                                    <li><strong>Codo izquierdo:</strong> Hombro izquierdo → Codo izquierdo → Muñeca izquierda</li>
+                                    <li><strong>Hombro derecho:</strong> Cadera derecha → Hombro derecho → Codo derecho</li>
+                                    <li><strong>Hombro izquierdo:</strong> Cadera izquierda → Hombro izquierdo → Codo izquierdo</li>
+                                    <li><strong>Rodilla derecha:</strong> Cadera derecha → Rodilla derecha → Tobillo derecho</li>
+                                    <li><strong>Rodilla izquierda:</strong> Cadera izquierda → Rodilla izquierda → Tobillo izquierdo</li>
+                                    <li><strong>Cadera derecha:</strong> Hombro derecho → Cadera derecha → Rodilla derecha</li>
+                                    <li><strong>Cadera izquierda:</strong> Hombro izquierdo → Cadera izquierda → Rodilla izquierda</li>
+                                    <li><strong>Tobillo derecho:</strong> Rodilla derecha → Talón derecho → Hallux Pie derecho</li>
+                                    <li><strong>Tobillo izquierdo:</strong> Rodilla izquierda → Talón izquierdo → Hallux Pie izquierdo</li>
+                                </ul>
+                                <p><em>Los ángulos se miden entre los tres puntos indicados, siendo el punto central el vértice del ángulo.</em></p>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acciones de Ventana -->
+    <record id="action_pose_definition" model="ir.actions.act_window">
+        <field name="name">Definiciones de Poses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pose.definition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea tu primera definición de pose personalizada
+            </p>
+            <p>
+                Las poses personalizadas te permiten definir nuevas posturas que serán
+                reconocidas por el sistema. Puedes especificar qué ángulos articulares
+                son importantes y sus rangos válidos.
+            </p>
+        </field>
+    </record>
+
+    <!-- Elementos de Menú -->
+    <menuitem id="menu_pose_management"
+              name="Gestión de Poses"
+              parent="clinic_management.menu_level_management"
+              sequence="20"
+              action="action_pose_definition"/>
+</odoo>
