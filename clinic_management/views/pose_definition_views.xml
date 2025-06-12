@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_pose_definition_tree" model="ir.ui.view">
+        <field name="name">pose.definition.tree</field>
+        <field name="model">pose.definition</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pose_definition_form" model="ir.ui.view">
+        <field name="name">pose.definition.form</field>
+        <field name="model">pose.definition</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g., Lateral Squat" />
+                            <field name="require_feet_on_ground" />
+                        </group>
+                        <group>
+                            <field
+                                name="foot_tolerance_y"
+                                invisible="require_feet_on_ground == False"
+                            />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Description">
+                            <field
+                                name="description"
+                                placeholder="Describe this pose and how it should be executed..."
+                            />
+                        </page>
+
+                        <page string="Angle Requirements">
+                            <field name="angle_requirements_ids">
+                                <tree editable="bottom">
+                                    <field name="angle_type" />
+                                    <field name="min_angle" />
+                                    <field name="max_angle" />
+                                    <field name="description" optional="show" />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="angle_type" />
+                                        </group>
+                                        <group>
+                                            <field name="min_angle" />
+                                            <field name="max_angle" />
+                                        </group>
+                                    </group>
+                                    <field
+                                        name="description"
+                                        placeholder="Optional description of the requirement..."
+                                    />
+                                </form>
+                            </field>
+                        </page>
+
+                        <page string="Angle Information">
+                            <div class="alert alert-info" role="status">
+                                <h4>Available Joint Angle Reference:</h4>
+                                <ul>
+                                    <li><strong
+                                        >Right Elbow:</strong> Right Shoulder → Right Elbow → Right Wrist</li>
+                                    <li><strong
+                                        >Left Elbow:</strong> Left Shoulder → Left Elbow → Left Wrist</li>
+                                    <li><strong
+                                        >Right Shoulder:</strong> Right Hip → Right Shoulder → Right Elbow</li>
+                                    <li><strong
+                                        >Left Shoulder:</strong> Left Hip → Left Shoulder → Left Elbow</li>
+                                    <li><strong
+                                        >Right Knee:</strong> Right Hip → Right Knee → Right Ankle</li>
+                                    <li><strong
+                                        >Left Knee:</strong> Left Hip → Left Knee → Left Ankle</li>
+                                    <li><strong
+                                        >Right Hip:</strong> Right Shoulder → Right Hip → Right Knee</li>
+                                    <li><strong
+                                        >Left Hip:</strong> Left Shoulder → Left Hip → Left Knee</li>
+                                    <li><strong
+                                        >Right Ankle:</strong> Right Knee → Right Heel → Right Foot Hallux</li>
+                                    <li><strong
+                                        >Left Ankle:</strong> Left Knee → Left Heel → Left Foot Hallux</li>
+                                </ul>
+                                <p><em
+                                    >Angles are measured between the three indicated points, with the central point being the vertex of the angle.</em></p>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pose_definition" model="ir.actions.act_window">
+        <field name="name">Pose Definitions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pose.definition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first custom pose definition
+            </p>
+            <p>
+                Custom poses allow you to define new postures that will be
+                recognized by the system. You can specify which joint angles
+                are important and their valid ranges.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_pose_management"
+        name="Pose Management"
+        parent="clinic_management.menu_level_management"
+        sequence="20"
+        action="action_pose_definition"
+    />
+</odoo>
