@@ -51,6 +51,76 @@
 
     <template id="portal_my_game_sessions" name="My Game Sessions">
         <t t-call="portal.portal_layout">
+            <a id="top" name="top" />
+            <style>
+                .clinic-card-shadow {
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    border-radius: 10px;
+                    transition: transform 0.2s ease-in-out;
+                }
+                .clinic-card-shadow:hover {
+                    transform: translateY(-2px);
+                }
+                .extra-small {
+                    font-size: 0.7rem;
+                }
+                .communication-thread .o_portal_chatter {
+                    background: transparent;
+                }
+                .communication-thread .o_portal_chatter .o_portal_chatter_header {
+                    background: #fff;
+                    border-radius: 8px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    border-left: 4px solid #007bff;
+                }
+                .communication-thread .o_portal_chatter .o_portal_chatter_message {
+                    background: #fff;
+                    border-radius: 8px;
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-left: 3px solid #e9ecef;
+                    transition: border-left-color 0.3s ease;
+                }
+                .communication-thread .o_portal_chatter .o_portal_chatter_message:hover {
+                    border-left-color: #007bff;
+                }
+                .communication-thread .o_portal_chatter .o_portal_chatter_composer {
+                    background: #fff;
+                    border-radius: 8px;
+                    padding: 15px;
+                    border: 2px dashed #dee2e6;
+                    transition: border-color 0.3s ease;
+                }
+                .communication-thread .o_portal_chatter .o_portal_chatter_composer:hover {
+                    border-color: #007bff;
+                }
+
+                /* Recent Sessions Enhanced Styles */
+                .session-item:hover {
+                    background-color: rgba(23, 162, 184, 0.05);
+                }
+
+                .session-view-btn:hover {
+                    transform: scale(1.1);
+                    background-color: #17a2b8 !important;
+                    color: white !important;
+                    border-color: #17a2b8 !important;
+                }
+
+                .badge.bg-success-subtle {
+                    background-color: rgba(25, 135, 84, 0.1) !important;
+                }
+
+                .badge.bg-warning-subtle {
+                    background-color: rgba(255, 193, 7, 0.1) !important;
+                }
+
+                .recent-sessions-footer {
+                    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                }
+            </style>
+
             <t t-set="breadcrumbs_searchbar" t-value="True" />
 
             <t t-call="portal.portal_searchbar">
@@ -58,15 +128,30 @@
             </t>
 
             <t t-if="not grouped_game_sessions">
-                <div class="alert alert-warning" role="alert">
-                    There are no game sessions.
+                <div class="alert alert-info text-center" role="alert">
+                    <i class="fa fa-info-circle fa-3x mb-3 text-muted" />
+                    <h4>No Game Sessions Found</h4>
+                    <p
+                        class="mb-0"
+                    >There are currently no game sessions to display. Sessions will appear here once they are created by the care team.</p>
                 </div>
             </t>
 
             <t t-if="grouped_game_sessions">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="alert alert-info" role="alert">
+                            <i class="fa fa-info-circle me-2" />
+                            <strong
+                            >Welcome to your Child's Therapy Sessions Portal!</strong>
+                            Here you can view all therapy sessions for your child, including videos, movement analysis, and professional feedback from the kinesiologists.
+                        </div>
+                    </div>
+                </div>
+
                 <div class="accordion" id="gameSessionsAccordion">
                     <t t-foreach="grouped_game_sessions.items()" t-as="group">
-                        <div class="accordion-item">
+                        <div class="accordion-item mb-3 clinic-card-shadow">
                             <h2
                                 class="accordion-header"
                                 t-att-id="'heading-' + group[0].replace(' ', '_')"
@@ -79,7 +164,23 @@
                                     aria-expanded="false"
                                     t-att-aria-controls="'collapse-' + group[0].replace(' ', '_')"
                                 >
-                                    <t t-esc="group[0]" />
+                                    <div
+                                        class="d-flex w-100 justify-content-between align-items-center"
+                                    >
+                                        <div>
+                                            <i
+                                                class="fa fa-user-circle me-2 text-primary"
+                                            />
+                                            <strong><t t-esc="group[0]" /></strong>
+                                        </div>
+                                        <span
+                                            class="badge bg-primary rounded-pill ms-2"
+                                        >
+                                            <t t-esc="len(group[1])" /> session<t
+                                                t-if="len(group[1]) != 1"
+                                            >s</t>
+                                        </span>
+                                    </div>
                                 </button>
                             </h2>
                             <div
@@ -89,36 +190,201 @@
                                 data-bs-parent="#gameSessionsAccordion"
                             >
                                 <div class="accordion-body">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th
-                                                    class="text-center"
-                                                >Session Date</th>
-                                                <th class="text-end">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <t t-foreach="group[1]" t-as="game_session">
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <span
-                                                            t-field="game_session.session_date"
-                                                            t-options="{'widget': 'date'}"
-                                                        />
-                                                    </td>
-                                                    <td class="text-end">
+                                    <div class="row">
+                                        <t t-foreach="group[1]" t-as="game_session">
+                                            <div class="col-md-6 col-lg-4 mb-3">
+                                                <div class="card h-100">
+                                                    <div
+                                                        class="card-header d-flex justify-content-between align-items-center"
+                                                    >
+                                                        <small class="text-muted">
+                                                            <i
+                                                                class="fa fa-calendar me-1"
+                                                            />
+                                                            <span
+                                                                t-field="game_session.session_date"
+                                                                t-options="{'widget': 'datetime', 'format': 'MMM dd, yyyy HH:mm'}"
+                                                            />
+                                                        </small>
+                                                        <t
+                                                            t-if="game_session.state == 'processed'"
+                                                        >
+                                                            <span
+                                                                class="badge bg-success"
+                                                            >
+                                                                <i
+                                                                    class="fa fa-check"
+                                                                /> Processed
+                                                            </span>
+                                                        </t>
+                                                        <t
+                                                            t-elif="game_session.state == 'pending_processing'"
+                                                        >
+                                                            <span
+                                                                class="badge bg-warning"
+                                                            >
+                                                                <i
+                                                                    class="fa fa-clock"
+                                                                /> Processing
+                                                            </span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span
+                                                                class="badge bg-danger"
+                                                            >
+                                                                <i
+                                                                    class="fa fa-exclamation"
+                                                                /> Failed
+                                                            </span>
+                                                        </t>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <t
+                                                            t-if="game_session.state == 'processed'"
+                                                        >
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-center mb-3"
+                                                            >
+                                                                <t
+                                                                    t-if="game_session.video"
+                                                                >
+                                                                    <div
+                                                                        class="text-center"
+                                                                    >
+                                                                        <div
+                                                                            class="badge bg-success bg-opacity-10 text-success p-3 rounded-circle mb-2"
+                                                                        >
+                                                                            <i
+                                                                                class="fa fa-video fa-lg"
+                                                                            />
+                                                                        </div>
+                                                                        <div
+                                                                            class="small fw-bold text-success"
+                                                                        >Video Available</div>
+                                                                    </div>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <div
+                                                                        class="text-center"
+                                                                    >
+                                                                        <div
+                                                                            class="badge bg-secondary bg-opacity-10 text-muted p-3 rounded-circle mb-2"
+                                                                        >
+                                                                            <i
+                                                                                class="fa fa-video-slash fa-lg"
+                                                                            />
+                                                                        </div>
+                                                                        <div
+                                                                            class="small fw-bold text-muted"
+                                                                        >No Video</div>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+
+                                                            <div class="row g-2">
+                                                                <div class="col-6">
+                                                                    <div
+                                                                        class="border rounded p-2 text-center bg-light"
+                                                                    >
+                                                                        <i
+                                                                            class="fa fa-chart-line text-info mb-1"
+                                                                        />
+                                                                        <div
+                                                                            class="small fw-bold text-info"
+                                                                        >Analysis</div>
+                                                                        <div
+                                                                            class="extra-small text-muted"
+                                                                        >Ready</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div
+                                                                        class="border rounded p-2 text-center bg-light"
+                                                                    >
+                                                                        <t
+                                                                            t-if="not is_html_empty(game_session.feedback)"
+                                                                        >
+                                                                            <i
+                                                                                class="fa fa-comments text-warning mb-1"
+                                                                            />
+                                                                            <div
+                                                                                class="small fw-bold text-warning"
+                                                                            >Feedback</div>
+                                                                            <div
+                                                                                class="extra-small text-muted"
+                                                                            >Available</div>
+                                                                        </t>
+                                                                        <t t-else="">
+                                                                            <i
+                                                                                class="fa fa-comment-slash text-muted mb-1"
+                                                                            />
+                                                                            <div
+                                                                                class="small fw-bold text-muted"
+                                                                            >Feedback</div>
+                                                                            <div
+                                                                                class="extra-small text-muted"
+                                                                            >Pending</div>
+                                                                        </t>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </t>
+                                                        <t
+                                                            t-elif="game_session.state == 'pending_processing'"
+                                                        >
+                                                            <div
+                                                                class="text-center py-4"
+                                                            >
+                                                                <div
+                                                                    class="badge bg-warning bg-opacity-10 text-warning p-3 rounded-circle mb-3"
+                                                                >
+                                                                    <i
+                                                                        class="fa fa-clock fa-lg"
+                                                                    />
+                                                                </div>
+                                                                <div
+                                                                    class="small fw-bold text-warning"
+                                                                >Processing Session</div>
+                                                                <div
+                                                                    class="extra-small text-muted"
+                                                                >Analysis in progress...</div>
+                                                            </div>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <div
+                                                                class="text-center py-4"
+                                                            >
+                                                                <div
+                                                                    class="badge bg-danger bg-opacity-10 text-danger p-3 rounded-circle mb-3"
+                                                                >
+                                                                    <i
+                                                                        class="fa fa-exclamation-triangle fa-lg"
+                                                                    />
+                                                                </div>
+                                                                <div
+                                                                    class="small fw-bold text-danger"
+                                                                >Processing Failed</div>
+                                                                <div
+                                                                    class="extra-small text-muted"
+                                                                >Contact support</div>
+                                                            </div>
+                                                        </t>
+                                                    </div>
+                                                    <div
+                                                        class="card-footer text-center"
+                                                    >
                                                         <a
                                                             t-att-href="'/my/game_sessions/%s' % game_session.id"
-                                                            class="btn btn-primary btn-sm"
+                                                            class="btn btn-primary btn-sm w-100"
                                                         >
+                                                            <i class="fa fa-eye me-1" />
                                                             View Details
                                                         </a>
-                                                    </td>
-                                                </tr>
-                                            </t>
-                                        </tbody>
-                                    </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -134,58 +400,643 @@
         inherit_id="portal.portal_sidebar"
     >
         <t t-call="portal.portal_layout">
-            <div
-                class="o_portal_header"
-                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"
-            >
-                <h2 style="font-size: 24px; font-weight: bold; color: #333; margin: 0;">
-                    Patient: <t t-esc="object.patient_id.name" />
-                </h2>
-                <span style="font-size: 14px; color: #777; margin-left: 20px;">
-                    Session Date: <t t-esc="object.session_date" />
-                </span>
-            </div>
+            <a id="top" name="top" />
+            <style>
+                .clinic-card-shadow {
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    border-radius: 10px;
+                    transition: transform 0.2s ease-in-out;
+                }
+                .clinic-card-shadow:hover {
+                    transform: translateY(-2px);
+                }
+                .clinic-video-container video {
+                    border-radius: 8px;
+                }
+                .clinic-stats-gradient {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                }
 
-            <t t-if="not is_html_empty(object.feedback)">
+                /* Recent Sessions Enhanced Styles */
+                .session-item:hover {
+                    background-color: rgba(23, 162, 184, 0.05);
+                }
+
+                .session-view-btn:hover {
+                    transform: scale(1.1);
+                    background-color: #17a2b8 !important;
+                    color: white !important;
+                    border-color: #17a2b8 !important;
+                }
+
+                .badge.bg-success-subtle {
+                    background-color: rgba(25, 135, 84, 0.1) !important;
+                }
+
+                .badge.bg-warning-subtle {
+                    background-color: rgba(255, 193, 7, 0.1) !important;
+                }
+
+                .recent-sessions-footer {
+                    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                }
+            </style>
+
+            <script src="https://d3js.org/d3.v3.min.js" />
+            <script src="https://mpld3.github.io/js/mpld3.v0.3.js" />
+
+            <t t-if="object.state == 'pending_processing'">
                 <div
-                    class="alert alert-info"
-                    style="margin-bottom: 20px; padding: 15px; border-radius: 5px;"
+                    class="alert alert-warning alert-dismissible fade show"
+                    role="alert"
                 >
-                    <h4
-                        style="margin: 0 0 10px; font-weight: bold;"
-                    >Game Session Feedback</h4>
-                    <p t-esc="object.feedback" style="margin: 0;" />
+                    <div class="d-flex align-items-center">
+                        <div
+                            class="spinner-border spinner-border-sm me-3"
+                            role="status"
+                        >
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div>
+                            <strong>Processing in progress</strong><br />
+                            <small
+                            >This session is currently being analyzed. Video analysis and charts will be available once processing is complete.</small>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                    />
+                </div>
+            </t>
+            <t t-elif="object.state == 'processing_failed'">
+                <div
+                    class="alert alert-danger alert-dismissible fade show"
+                    role="alert"
+                >
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-exclamation-triangle fa-2x me-3" />
+                        <div>
+                            <strong>Processing failed</strong><br />
+                            <small
+                            >There was an issue analyzing this session. Please contact your kinesiologist for assistance.</small>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                    />
                 </div>
             </t>
 
-            <div
-                class="o_portal_kinesiologists"
-                style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;"
-            >
-                <h4
-                    style="margin: 0 0 10px; font-weight: bold; color: #333;"
-                >Kinesiologists</h4>
-                <ul style="margin: 0; padding: 0 0 0 20px;">
-                    <t
-                        t-foreach="object.patient_id.patient_link_ids.filtered(lambda x: x.user_id.partner_id.partner_type == 'kinesiologist')"
-                        t-as="kinesiologist"
-                    >
-                        <li style="margin-bottom: 5px;">
-                            <strong><t
-                                    t-esc="kinesiologist.user_id.partner_id.name"
-                                /></strong>
-                            (<t t-esc="kinesiologist.user_id.email" />)
-                        </li>
-                    </t>
-                </ul>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="/my/game_sessions" class="btn btn-outline-secondary">
+                            <i class="fa fa-arrow-left me-1" />
+                            Back to Sessions
+                        </a>
+                        <div class="text-muted">
+                            <small>
+                                <i class="fa fa-clock me-1" />
+                                Session created on <span
+                                    t-field="object.create_date"
+                                    t-options="{'widget': 'date'}"
+                                />
+                            </small>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="o_portal_content">
-                <div class="o_portal_messages_container">
-                    <h3>Communication history</h3>
-                    <t t-call="portal.message_thread">
-                        <t t-set="message_per_page" t-value="5" />
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="card h-100 clinic-card-shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="fa fa-user-circle me-2" />
+                                Patient Information
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="text-primary"><t
+                                            t-esc="object.patient_id.name"
+                                        /></h5>
+                                    <p class="mb-2">
+                                        <strong>Session Date:</strong>
+                                        <span
+                                            t-field="object.session_date"
+                                            t-options="{'widget': 'datetime'}"
+                                        />
+                                    </p>
+                                    <t t-if="object.patient_id.health_insurance_id">
+                                        <p class="mb-2">
+                                            <strong>Health Insurance:</strong>
+                                            <t
+                                                t-esc="object.patient_id.health_insurance_id.name"
+                                            />
+                                        </p>
+                                    </t>
+                                    <t t-if="object.patient_id.health_insurance_number">
+                                        <p class="mb-2">
+                                            <strong>Insurance Number:</strong>
+                                            <t
+                                                t-esc="object.patient_id.health_insurance_number"
+                                            />
+                                        </p>
+                                    </t>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center">
+                                        <t t-if="object.state == 'processed'">
+                                            <span class="badge bg-success fs-6 p-3">
+                                                <i class="fa fa-check-circle me-1" />
+                                                Session Processed
+                                            </span>
+                                        </t>
+                                        <t
+                                            t-elif="object.state == 'pending_processing'"
+                                        >
+                                            <span class="badge bg-warning fs-6 p-3">
+                                                <i class="fa fa-clock me-1" />
+                                                Processing...
+                                            </span>
+                                        </t>
+                                        <t t-elif="object.state == 'processing_failed'">
+                                            <span class="badge bg-danger fs-6 p-3">
+                                                <i
+                                                    class="fa fa-exclamation-triangle me-1"
+                                                />
+                                                Processing Failed
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 clinic-card-shadow">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="fa fa-user-md me-2" />
+                                Care Team
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <t
+                                t-set="kinesiologists"
+                                t-value="object.patient_id.patient_link_ids.filtered(lambda x: x.user_id.partner_id.partner_type == 'kinesiologist')"
+                            />
+                            <t t-if="kinesiologists">
+                                <t t-foreach="kinesiologists" t-as="kinesiologist">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="me-3">
+                                            <i
+                                                class="fa fa-stethoscope text-info fa-lg"
+                                            />
+                                        </div>
+                                        <div>
+                                            <strong><t
+                                                    t-esc="kinesiologist.user_id.partner_id.name"
+                                                /></strong>
+                                            <t t-if="kinesiologist.user_id.email">
+                                                <br /><small class="text-muted">
+                                                    <i class="fa fa-envelope me-1" />
+                                                    <t
+                                                        t-esc="kinesiologist.user_id.email"
+                                                    />
+                                                </small>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-else="">
+                                <p class="text-muted mb-0">No kinesiologist assigned</p>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <t t-if="object.video">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <h5 class="card-title mb-0">
+                                    <i class="fa fa-video me-2" />
+                                    Original Session Video
+                                </h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <video
+                                    controls="controls"
+                                    style="width: 100%; max-height: 400px;"
+                                    class="border rounded"
+                                >
+                                    <source
+                                        t-att-src="'/web/content/clinic.game.session/%s/video/%s' % (object.id, object.filename or 'session_video.mp4')"
+                                        type="video/mp4"
+                                    />
+                                    Your browser does not support the video tag.
+                                </video>
+                                <p class="text-muted mt-2 mb-0">
+                                    <small>
+                                        <i class="fa fa-info-circle me-1" />
+                                        Original session recording
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="card-title mb-0">
+                                    <i class="fa fa-chart-line me-2" />
+                                    Analysis Video
+                                </h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <t
+                                    t-if="object.video_annotated and object.annotated_video_state == 'done'"
+                                >
+                                    <video
+                                        controls="controls"
+                                        style="width: 100%; max-height: 400px;"
+                                        class="border rounded"
+                                    >
+                                        <source
+                                            t-att-src="'/web/content/clinic.game.session/%s/video_annotated/%s' % (object.id, object.filename_annotated or 'annotated_video.mp4')"
+                                            type="video/mp4"
+                                        />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-muted mt-2 mb-0">
+                                        <small>
+                                            <i class="fa fa-check-circle me-1" />
+                                            Video with movement analysis overlay
+                                        </small>
+                                    </p>
+                                </t>
+                                <t t-elif="object.annotated_video_state == 'pending'">
+                                    <div class="text-center p-5">
+                                        <div
+                                            class="spinner-border text-primary mb-3"
+                                            role="status"
+                                        >
+                                            <span
+                                                class="visually-hidden"
+                                            >Loading...</span>
+                                        </div>
+                                        <p
+                                            class="text-muted"
+                                        >Generating analysis video...</p>
+                                    </div>
+                                </t>
+                                <t t-elif="object.annotated_video_state == 'failed'">
+                                    <div class="text-center p-5">
+                                        <i
+                                            class="fa fa-exclamation-triangle text-warning fa-3x mb-3"
+                                        />
+                                        <p
+                                            class="text-muted"
+                                        >Analysis video generation failed</p>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div class="text-center p-5">
+                                        <i
+                                            class="fa fa-video-slash text-muted fa-3x mb-3"
+                                        />
+                                        <p
+                                            class="text-muted"
+                                        >Analysis video not available</p>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="object.state == 'processed' and object.joint_angle_chart_combined">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0">
+                                    <i class="fa fa-chart-area me-2" />
+                                    Movement Analysis
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <t t-if="object.joint_angle_chart_combined">
+                                    <div
+                                        id="mpld3_chart_container"
+                                        style="width: 100%; min-height: 400px;"
+                                    >
+                                        <t
+                                            t-raw="object.joint_angle_chart_combined.get('div', '')"
+                                        />
+                                    </div>
+                                    <script type="text/javascript">
+                                        <t
+                                            t-raw="object.joint_angle_chart_combined.get('script', '')"
+                                        />
+                                    </script>
+                                </t>
+                                <t t-else="">
+                                    <div class="text-center p-5">
+                                        <i
+                                            class="fa fa-chart-line fa-3x text-muted mb-3"
+                                        />
+                                        <p
+                                            class="text-muted"
+                                        >No analysis charts available yet.</p>
+                                        <small
+                                            class="text-muted"
+                                        >Charts will appear here once the session is processed and angles are selected.</small>
+                                    </div>
+                                </t>
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <i class="fa fa-info-circle me-1" />
+                                        This chart shows the joint angle measurements throughout the session.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="not is_html_empty(object.feedback)">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-warning text-white">
+                                <h5 class="card-title mb-0">
+                                    <i class="fa fa-comments me-2" />
+                                    Professional Feedback
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div
+                                    t-field="object.feedback"
+                                    class="o_portal_html_content"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card clinic-card-shadow">
+                        <div
+                            class="card-header"
+                            style="background: linear-gradient(135deg, #6c757d 0%, #495057 100%); color: white;"
+                        >
+                            <div
+                                class="d-flex justify-content-between align-items-center"
+                            >
+                                <div>
+                                    <h5 class="card-title mb-1">
+                                        <i class="fa fa-comments me-2" />
+                                        Communication History
+                                    </h5>
+                                    <small
+                                        class="opacity-75"
+                                    >Messages between you and the care team</small>
+                                </div>
+                                <div class="badge bg-light text-dark">
+                                    <i class="fa fa-envelope me-1" />
+                                    Messages
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" style="background: #fafafa;">
+                            <div class="communication-thread">
+                                <t t-call="portal.message_thread">
+                                    <t t-set="message_per_page" t-value="5" />
+                                </t>
+                            </div>
+
+                            <div class="text-center py-4 d-none" id="no-messages-state">
+                                <i class="fa fa-comment-slash fa-3x text-muted mb-3" />
+                                <h6 class="text-muted">No messages yet</h6>
+                                <p class="text-muted small mb-0">
+                                    Start a conversation with your kinesiologist about this session
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top">
+                            <div class="d-flex align-items-center text-muted">
+                                <i class="fa fa-info-circle me-2" />
+                                <small>
+                                    Use this space to communicate with your child's therapy team about this session
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <t
+                        t-set="computed_recent_sessions"
+                        t-value="recent_sessions or []"
+                    />
+                    <t t-set="total_count" t-value="total_sessions or 1" />
+
+                    <t t-if="computed_recent_sessions">
+                        <div class="card clinic-card-shadow mb-3">
+                            <div
+                                class="card-header"
+                                style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); color: white;"
+                            >
+                                <h6 class="card-title mb-1">
+                                    <i class="fa fa-history me-2" />
+                                    Recent Sessions
+                                </h6>
+                                <small
+                                    class="opacity-75"
+                                >Quick access to other sessions for <strong
+                                        t-esc="game_session.patient_id.name"
+                                    /></small>
+                            </div>
+                            <div class="card-body p-0">
+                                <t t-foreach="computed_recent_sessions" t-as="recent">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center p-3 border-bottom session-item"
+                                        style="transition: background-color 0.2s ease;"
+                                    >
+                                        <div class="flex-grow-1">
+                                            <div
+                                                class="d-flex align-items-center justify-content-between mb-2"
+                                            >
+                                                <div class="d-flex align-items-center">
+                                                    <i
+                                                        class="fa fa-calendar fa-sm text-info me-2"
+                                                    />
+                                                    <small class="fw-bold text-dark">
+                                                        <t
+                                                            t-esc="recent.session_date.strftime('%b %d, %Y') if recent.session_date else 'Date not available'"
+                                                        />
+                                                    </small>
+                                                </div>
+                                                <t t-if="recent.state == 'processed'">
+                                                    <span
+                                                        class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2 py-1"
+                                                        style="font-size: 0.65rem;"
+                                                    >
+                                                        <i
+                                                            class="fa fa-check fa-xs me-1"
+                                                        />Processed
+                                                    </span>
+                                                </t>
+                                                <t t-elif="recent.state == 'pending'">
+                                                    <span
+                                                        class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill px-2 py-1"
+                                                        style="font-size: 0.65rem;"
+                                                    >
+                                                        <i
+                                                            class="fa fa-clock fa-xs me-1"
+                                                        />Pending
+                                                    </span>
+                                                </t>
+                                            </div>
+                                            <div
+                                                class="d-flex align-items-center justify-content-between"
+                                            >
+                                                <div class="d-flex align-items-center">
+                                                    <i
+                                                        class="fa fa-clock fa-sm text-muted me-2"
+                                                    />
+                                                    <small class="text-muted">
+                                                        <t
+                                                            t-esc="recent.session_date.strftime('%I:%M %p') if recent.session_date else '--:--'"
+                                                        />
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a
+                                            t-att-href="'/my/game_sessions/%s' % recent.id"
+                                            class="btn btn-sm btn-outline-info rounded-circle p-2 ms-3 session-view-btn"
+                                            style="transition: all 0.2s ease;"
+                                            title="View session details"
+                                        >
+                                            <i class="fa fa-arrow-right fa-sm" />
+                                        </a>
+                                    </div>
+                                </t>
+                            </div>
+                            <div
+                                class="card-footer recent-sessions-footer bg-light border-0"
+                            >
+                                <div
+                                    class="d-flex justify-content-between align-items-center"
+                                >
+                                    <small class="text-muted">
+                                        <i class="fa fa-info-circle fa-sm me-1" />
+                                        Showing <strong
+                                            t-esc="len(computed_recent_sessions)"
+                                        /> of <strong
+                                            t-esc="total_count"
+                                        /> total sessions
+                                    </small>
+                                    <a
+                                        href="/my/game_sessions"
+                                        class="btn btn-sm btn-link text-decoration-none p-0"
+                                    >
+                                        View All <i
+                                            class="fa fa-external-link-alt fa-xs ms-1"
+                                        />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </t>
+                    <t t-else="">
+                        <div class="card clinic-card-shadow mb-3">
+                            <div
+                                class="card-header"
+                                style="background: linear-gradient(135deg, #6c757d 0%, #495057 100%); color: white;"
+                            >
+                                <h6 class="card-title mb-1">
+                                    <i class="fa fa-history me-2" />
+                                    Recent Sessions
+                                </h6>
+                                <small class="opacity-75">Session history for <strong
+                                        t-esc="game_session.patient_id.name"
+                                    /></small>
+                            </div>
+                            <div class="card-body text-center py-4">
+                                <div class="mb-3">
+                                    <i
+                                        class="fa fa-folder-open text-muted"
+                                        style="font-size: 2rem;"
+                                    />
+                                </div>
+                                <p
+                                    class="text-muted mb-2"
+                                >No other sessions available</p>
+                                <small
+                                    class="text-muted"
+                                >This is the first or only session for this patient.</small>
+                            </div>
+                            <div class="card-footer bg-light border-0 text-center">
+                                <a
+                                    href="/my/game_sessions"
+                                    class="btn btn-sm btn-outline-primary"
+                                >
+                                    <i class="fa fa-list me-1" />View All Sessions
+                                </a>
+                            </div>
+                        </div>
+                    </t>
+
+                    <div class="card clinic-card-shadow">
+                        <div
+                            class="card-header"
+                            style="background: linear-gradient(135deg, #343a40 0%, #212529 100%); color: white;"
+                        >
+                            <h6 class="card-title mb-1">
+                                <i class="fa fa-tools me-2" />
+                                Quick Actions
+                            </h6>
+                            <small class="opacity-75">Helpful shortcuts</small>
+                        </div>
+                        <div class="card-body p-2">
+                            <div class="d-grid gap-2">
+                                <a
+                                    href="/my/game_sessions"
+                                    class="btn btn-outline-primary btn-sm d-flex align-items-center"
+                                >
+                                    <i class="fa fa-list me-2" />
+                                    <span>All Sessions</span>
+                                </a>
+                                <a
+                                    href="/my"
+                                    class="btn btn-outline-secondary btn-sm d-flex align-items-center"
+                                >
+                                    <i class="fa fa-home me-2" />
+                                    <span>Portal Home</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </t>

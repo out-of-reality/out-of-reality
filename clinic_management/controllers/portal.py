@@ -106,8 +106,69 @@ class GameSessionCustomerPortal(CustomerPortal):
         except (AccessError, MissingError):
             return request.redirect("/my")
 
+        patient = session_sudo.patient_id
+        kinesiologists = patient.patient_link_ids.filtered(
+            lambda x: x.user_id.partner_id.partner_type == "kinesiologist"
+        )
+        guardians = patient.patient_link_ids.filtered(
+            lambda x: x.user_id.partner_id.partner_type == "guardian"
+        )
+
+        domain_recent = [
+            ("patient_id", "=", patient.id),
+            ("id", "!=", session_id),
+        ]
+
+        recent_sessions_processed = request.env["clinic.game.session"].search(
+            domain_recent + [("state", "=", "processed")],
+            limit=5,
+            order="session_date desc",
+        )
+
+        # If we have less than 5 processed sessions, fill with other states
+        recent_sessions = recent_sessions_processed
+        if len(recent_sessions_processed) < 5:
+            remaining_needed = 5 - len(recent_sessions_processed)
+            other_sessions = request.env["clinic.game.session"].search(
+                domain_recent
+                + [
+                    ("state", "!=", "processed"),
+                    ("id", "not in", recent_sessions_processed.ids),
+                ],
+                limit=remaining_needed,
+                order="session_date desc",
+            )
+            recent_sessions = recent_sessions_processed + other_sessions
+
+        all_sessions_including_current = (
+            request.env["clinic.game.session"]
+            .sudo()
+            .search([("patient_id", "=", patient.id)])
+        )
+
+        total_sessions = len(all_sessions_including_current)
+
+        processed_sessions = request.env["clinic.game.session"].search_count(
+            [("patient_id", "=", patient.id), ("state", "=", "processed")]
+        )
+
         values = {
             "game_session": session_sudo,
+            "patient": patient,
+            "kinesiologists": kinesiologists,
+            "guardians": guardians,
+            "recent_sessions": recent_sessions,
+            "total_sessions": total_sessions,
+            "processed_sessions": processed_sessions,
+            "has_video": bool(session_sudo.video),
+            "has_annotated_video": bool(
+                session_sudo.video_annotated
+                and session_sudo.annotated_video_state == "done"
+            ),
+            "has_charts": bool(
+                session_sudo.state == "processed"
+                and session_sudo.joint_angle_chart_combined
+            ),
         }
 
         history_session_key = "my_game_sessions_history"
