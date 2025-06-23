@@ -65,7 +65,11 @@ publicWidget.registry.FaceIDLogin = publicWidget.Widget.extend({
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({image}),
+                    body: JSON.stringify({
+                        jsonrpc: "2.0",
+                        method: "call",
+                        params: {image},
+                    }),
                 });
 
                 spinner.classList.remove("d-flex");
