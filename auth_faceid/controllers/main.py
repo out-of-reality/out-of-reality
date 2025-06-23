@@ -1,5 +1,3 @@
-import json
-
 from odoo import _, http
 from odoo.http import request
 
@@ -16,8 +14,7 @@ class FaceIDLoginController(http.Controller):
         methods=["POST"],
         csrf=False,
     )
-    def verify_face(self):
-        image = json.loads(request.httprequest.data.decode("utf-8")).get("image")
+    def verify_face(self, image=None, **kwargs):
         result = FaceIDService.identify_user(image, request.env)
         if result["success"]:
             return self._login_user(result["user"])
