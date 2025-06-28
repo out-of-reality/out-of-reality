@@ -4,18 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-01-18 17:47+0000\n"
-"Last-Translator: Franco Leyes <leyes404@gmail.com>\n"
-"Language-Team: Spanish <https://weblate.francoleyes.xyz/projects/"
-"out-of-reality-17-0/out-of-reality-17-0-clinic_management/es/>\n"
+"POT-Creation-Date: 2025-06-28 06:32+0000\n"
+"PO-Revision-Date: 2025-06-28 06:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: ES\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: clinic_management
 #: model:mail.template,body_html:clinic_management.email_template_clinic_session
@@ -34,13 +33,532 @@ msgid ""
 "</div>\n"
 "        "
 msgstr ""
+"<div style=\"font-family: Arial, sans-serif; line-height: 1.6;\">\n"
+"    <p>Hola,</p>\n"
+"    <p>La sesión de juego para <strong><t t-out=\"object.patient_id.name\"></t></strong> fue programada el <strong><t t-out=\"object.session_date\"></t></strong>.</p>\n"
+"    <t t-if=\"not is_html_empty(object.feedback)\">\n"
+"        <p><strong>Comentarios:</strong></p>\n"
+"        <p><t t-out=\"object.feedback\"></t></p>\n"
+"    </t>\n"
+"    <p>Saludos cordiales,</p>\n"
+"    <t t-if=\"ctx.get('user_name')\">\n"
+"        <p><t t-out=\"ctx.get('user_name')\"></t></p>\n"
+"    </t>\n"
+"</div>\n"
+"        "
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid ""
+"<em>Angles are measured between the three indicated points, with the central"
+" point being the vertex of the angle.</em>"
+msgstr ""
+"<em>Los ángulos se miden entre los tres puntos indicados, siendo el punto central el vértice del ángulo.</em>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-arrow-left me-1\"/>\n"
+"                            Back to Sessions"
+msgstr ""
+"<i class=\"fa fa-arrow-left me-1\"/>\n"
+"                            Volver a las Sesiones"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-chart-area me-2\"/>\n"
+"                                    Movement Analysis"
+msgstr ""
+"<i class=\"fa fa-chart-area me-2\"/>\n"
+"                                    Análisis de Movimiento"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-chart-line me-2\"/>\n"
+"                                    Analysis Video"
+msgstr ""
+"<i class=\"fa fa-chart-line me-2\"/>\n"
+"                                    Video de Análisis"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-clock me-1\"/>\n"
+"                                Session created on"
+msgstr ""
+"<i class=\"fa fa-clock me-1\"/>\n"
+"                                Sesión creada el"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-comments me-2\"/>\n"
+"                                        Communication History"
+msgstr ""
+"<i class=\"fa fa-comments me-2\"/>\n"
+"                                        Historial de Comunicación"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-comments me-2\"/>\n"
+"                                    Professional Feedback"
+msgstr ""
+"<i class=\"fa fa-comments me-2\"/>\n"
+"                                    Retroalimentación Profesional"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-envelope me-1\"/>\n"
+"                                    Messages"
+msgstr ""
+"<i class=\"fa fa-envelope me-1\"/>\n"
+"                                    Mensajes"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid ""
+"<i class=\"fa fa-eye me-1\"/>\n"
+"                                                            View Details"
+msgstr ""
+"<i class=\"fa fa-eye me-1\"/>\n"
+"                                                            Ver Detalles"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-history me-2\"/>\n"
+"                                    Recent Sessions"
+msgstr ""
+"<i class=\"fa fa-history me-2\"/>\n"
+"                                    Sesiones Recientes"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-home me-2\"/>\n"
+"                                    <span>Portal Home</span>"
+msgstr ""
+"<i class=\"fa fa-home me-2\"/>\n"
+"                                    <span>Inicio del Portal</span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-info-circle fa-sm me-1\"/>\n"
+"                                        Showing"
+msgstr ""
+"<i class=\"fa fa-info-circle fa-sm me-1\"/>\n"
+"                                        Mostrando"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-info-circle me-2\"/>\n"
+"                                <small>\n"
+"                                    Use this space to communicate with your child's therapy team about this session\n"
+"                                </small>"
+msgstr ""
+"<i class=\"fa fa-info-circle me-2\"/>\n"
+"                                <small>\n"
+"                                    Use este espacio para comunicarse con el equipo de terapia de su hijo sobre esta sesión\n"
+"                                </small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid ""
+"<i class=\"fa fa-info-circle me-2\"/>\n"
+"                            <strong>Welcome to your Child's Therapy Sessions Portal!</strong>\n"
+"                            Here you can view all therapy sessions for your child, including videos, movement analysis, and professional feedback from the kinesiologists."
+msgstr ""
+"<i class=\"fa fa-info-circle me-2\"/>\n"
+"                            <strong>¡Bienvenido al Portal de Sesiones de Terapia de su Hijo!</strong>\n"
+"                            Aquí puede ver todas las sesiones de terapia de su hijo, incluyendo videos, análisis de movimiento y retroalimentación profesional de los kinesiólogos."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "<i class=\"fa fa-list me-1\"/>View All Sessions"
+msgstr "<i class=\"fa fa-list me-1\"/>Ver Todas las Sesiones"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-list me-2\"/>\n"
+"                                    <span>All Sessions</span>"
+msgstr ""
+"<i class=\"fa fa-list me-2\"/>\n"
+"                                    <span>Todas las Sesiones</span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-tools me-2\"/>\n"
+"                                Quick Actions"
+msgstr ""
+"<i class=\"fa fa-tools me-2\"/>\n"
+"                                Acciones Rápidas"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-user-circle me-2\"/>\n"
+"                                Patient Information"
+msgstr ""
+"<i class=\"fa fa-user-circle me-2\"/>\n"
+"                                Información del Paciente"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-user-md me-2\"/>\n"
+"                                Care Team"
+msgstr ""
+"<i class=\"fa fa-user-md me-2\"/>\n"
+"                                Equipo de Atención"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-video me-2\"/>\n"
+"                                    Original Session Video"
+msgstr ""
+"<i class=\"fa fa-video me-2\"/>\n"
+"                                    Video Original de la Sesión"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "<small class=\"opacity-75\">Helpful shortcuts</small>"
+msgstr "<small class=\"opacity-75\">Accesos rápidos útiles</small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "<small class=\"opacity-75\">Messages between you and the care team</small>"
+msgstr "<small class=\"opacity-75\">Mensajes entre usted y el equipo de atención</small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<small class=\"text-muted\">\n"
+"                                        <i class=\"fa fa-info-circle me-1\"/>\n"
+"                                        This chart shows the joint angle measurements throughout the session.\n"
+"                                    </small>"
+msgstr ""
+"<small class=\"text-muted\">\n"
+"                                        <i class=\"fa fa-info-circle me-1\"/>\n"
+"                                        Este gráfico muestra las mediciones de ángulos articulares a lo largo de la sesión.\n"
+"                                    </small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<small class=\"text-muted\">Charts will appear here once the session is "
+"processed and angles are selected.</small>"
+msgstr ""
+"<small class=\"text-muted\">Los gráficos aparecerán aquí una vez que la sesión sea procesada y los ángulos seleccionados.</small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<small class=\"text-muted\">This is the first or only session for this "
+"patient.</small>"
+msgstr ""
+"<small class=\"text-muted\">Esta es la primera o única sesión para este paciente.</small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<small>\n"
+"                                            <i class=\"fa fa-check-circle me-1\"/>\n"
+"                                            Video with movement analysis overlay\n"
+"                                        </small>"
+msgstr ""
+"<small>\n"
+"                                            <i class=\"fa fa-check-circle me-1\"/>\n"
+"                                            Video con superposición de análisis de movimiento\n"
+"                                        </small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<small>\n"
+"                                        <i class=\"fa fa-info-circle me-1\"/>\n"
+"                                        Original session recording\n"
+"                                    </small>"
+msgstr ""
+"<small>\n"
+"                                        <i class=\"fa fa-info-circle me-1\"/>\n"
+"                                        Grabación original de la sesión\n"
+"                                    </small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<span class=\"badge bg-danger fs-6 p-3\">\n"
+"                                                <i class=\"fa fa-exclamation-triangle me-1\"/>\n"
+"                                                Processing Failed\n"
+"                                            </span>"
+msgstr ""
+"<span class=\"badge bg-danger fs-6 p-3\">\n"
+"                                                <i class=\"fa fa-exclamation-triangle me-1\"/>\n"
+"                                                Error en el Procesamiento\n"
+"                                            </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid ""
+"<span class=\"badge bg-danger\">\n"
+"                                                                <i class=\"fa fa-exclamation\"/> Failed\n"
+"                                                            </span>"
+msgstr ""
+"<span class=\"badge bg-danger\">\n"
+"                                                                <i class=\"fa fa-exclamation\"/> Fallido\n"
+"                                                            </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<span class=\"badge bg-success fs-6 p-3\">\n"
+"                                                <i class=\"fa fa-check-circle me-1\"/>\n"
+"                                                Session Processed\n"
+"                                            </span>"
+msgstr ""
+"<span class=\"badge bg-success fs-6 p-3\">\n"
+"                                                <i class=\"fa fa-check-circle me-1\"/>\n"
+"                                                Sesión Procesada\n"
+"                                            </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid ""
+"<span class=\"badge bg-success\">\n"
+"                                                                <i class=\"fa fa-check\"/> Processed\n"
+"                                                            </span>"
+msgstr ""
+"<span class=\"badge bg-success\">\n"
+"                                                                <i class=\"fa fa-check\"/> Procesado\n"
+"                                                            </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<span class=\"badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2 py-1\" style=\"font-size: 0.65rem;\">\n"
+"                                                        <i class=\"fa fa-check fa-xs me-1\"/>Processed\n"
+"                                                    </span>"
+msgstr ""
+"<span class=\"badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2 py-1\" style=\"font-size: 0.65rem;\">\n"
+"                                                        <i class=\"fa fa-check fa-xs me-1\"/>Procesado\n"
+"                                                    </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<span class=\"badge bg-warning fs-6 p-3\">\n"
+"                                                <i class=\"fa fa-clock me-1\"/>\n"
+"                                                Processing...\n"
+"                                            </span>"
+msgstr ""
+"<span class=\"badge bg-warning fs-6 p-3\">\n"
+"                                                <i class=\"fa fa-clock me-1\"/>\n"
+"                                                Procesando...\n"
+"                                            </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid ""
+"<span class=\"badge bg-warning\">\n"
+"                                                                <i class=\"fa fa-clock\"/> Processing\n"
+"                                                            </span>"
+msgstr ""
+"<span class=\"badge bg-warning\">\n"
+"                                                                <i class=\"fa fa-clock\"/> Procesando\n"
+"                                                            </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<span class=\"badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill px-2 py-1\" style=\"font-size: 0.65rem;\">\n"
+"                                                        <i class=\"fa fa-clock fa-xs me-1\"/>Pending\n"
+"                                                    </span>"
+msgstr ""
+"<span class=\"badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill px-2 py-1\" style=\"font-size: 0.65rem;\">\n"
+"                                                        <i class=\"fa fa-clock fa-xs me-1\"/>Pendiente\n"
+"                                                    </span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid ""
+"<span class=\"text-muted\" invisible=\"[('partner_ids', '!=', [])]\"> "
+"(Applies to all patients if empty and no other specific config "
+"exists)</span>"
+msgstr ""
+"<span class=\"text-muted\" invisible=\"[('partner_ids', '!=', [])]\"> "
+"(Se aplica a todos los pacientes si está vacío y no existe otra configuración específica)"
+"</span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "<span class=\"visually-hidden\">Loading...</span>"
+msgstr "<span class=\"visually-hidden\">Cargando...</span>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Assigned Patients:</strong>"
+msgstr "<strong>Pacientes Asignados:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Backward:</strong>"
+msgstr "<strong>Hacia Atrás:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Coin Poses:</strong>"
+msgstr "<strong>Poses de Monedas:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Forward:</strong>"
+msgstr "<strong>Hacia Adelante:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "<strong>Health Insurance:</strong>"
+msgstr "<strong>Obra Social:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "<strong>Insurance Number:</strong>"
+msgstr "<strong>Número de Seguro:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "<strong>Left Ankle:</strong> Left Knee → Left Heel → Left Foot Hallux"
+msgstr "<strong>Tobillo Izquierdo:</strong> Rodilla Izquierda → Talón Izquierdo → Dedo Gordo del Pie Izquierdo"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "<strong>Left Elbow:</strong> Left Shoulder → Left Elbow → Left Wrist"
+msgstr "<strong>Codo Izquierdo:</strong> Hombro Izquierdo → Codo Izquierdo → Muñeca Izquierda"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "<strong>Left Hip:</strong> Left Shoulder → Left Hip → Left Knee"
+msgstr "<strong>Cadera Izquierda:</strong> Hombro Izquierdo → Cadera Izquierda → Rodilla Izquierda"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "<strong>Left Knee:</strong> Left Hip → Left Knee → Left Ankle"
+msgstr "<strong>Rodilla Izquierda:</strong> Cadera Izquierda → Rodilla Izquierda → Tobillo Izquierdo"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "<strong>Left Shoulder:</strong> Left Hip → Left Shoulder → Left Elbow"
+msgstr "<strong>Hombro Izquierdo:</strong> Cadera Izquierda → Hombro Izquierdo → Codo Izquierdo"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Left:</strong>"
+msgstr "<strong>Izquierda:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Level:</strong>"
+msgstr "<strong>Nivel:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<strong>Processing failed</strong><br/>\n"
+"                            <small>There was an issue analyzing this session. Please contact your kinesiologist for assistance.</small>"
+msgstr ""
+"<strong>Error en el procesamiento</strong><br/>\n"
+"                            <small>Hubo un problema analizando esta sesión. Por favor contacte a su kinesiólogo para asistencia.</small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<strong>Processing in progress</strong><br/>\n"
+"                            <small>This session is currently being analyzed. Video analysis and charts will be available once processing is complete.</small>"
+msgstr ""
+"<strong>Procesamiento en progreso</strong><br/>\n"
+"                            <small>Esta sesión está siendo analizada actualmente. El análisis de video y los gráficos estarán disponibles una vez que se complete el procesamiento.</small>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid ""
+"<strong>Right Ankle:</strong> Right Knee → Right Heel → Right Foot Hallux"
+msgstr ""
+"<strong>Tobillo Derecho:</strong> Rodilla Derecha → Talón Derecho → Dedo Gordo del Pie Derecho"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid ""
+"<strong>Right Elbow:</strong> Right Shoulder → Right Elbow → Right Wrist"
+msgstr ""
+"<strong>Codo Derecho:</strong> Hombro Derecho → Codo Derecho → Muñeca Derecha"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "<strong>Right Hip:</strong> Right Shoulder → Right Hip → Right Knee"
+msgstr "<strong>Cadera Derecha:</strong> Hombro Derecho → Cadera Derecha → Rodilla Derecha"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "<strong>Right Knee:</strong> Right Hip → Right Knee → Right Ankle"
+msgstr "<strong>Rodilla Derecha:</strong> Cadera Derecha → Rodilla Derecha → Tobillo Derecho"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid ""
+"<strong>Right Shoulder:</strong> Right Hip → Right Shoulder → Right Elbow"
+msgstr ""
+"<strong>Hombro Derecho:</strong> Cadera Derecha → Hombro Derecho → Codo Derecho"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Right:</strong>"
+msgstr "<strong>Derecha:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "<strong>Session Date:</strong>"
+msgstr "<strong>Fecha de la Sesión:</strong>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "<strong>Time Limit:</strong>"
+msgstr "<strong>Límite de Tiempo:</strong>"
+
+#. module: clinic_management
+#: model:ir.model.constraint,message:clinic_management.constraint_level_configuration_name_level_uniq
+msgid "A configuration with this name and level number already exists!"
+msgstr "¡Ya existe una configuración con este nombre y número de nivel!"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__name
+msgid ""
+"A descriptive name for this level configuration (e.g., 'Standard Level 1', "
+"'Advanced Level 1 - Therapy Group A')."
+msgstr ""
+"Un nombre descriptivo para esta configuración de nivel (ej., 'Nivel Estándar 1', "
+"'Nivel Avanzado 1 - Grupo de Terapia A')."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_definition.py:0
+#, python-format
+msgid "A pose must have at least one angle requirement defined."
+msgstr "Una pose debe tener al menos un requerimiento de ángulo definido."
 
 #. module: clinic_management
 #. odoo-python
 #: code:addons/clinic_management/models/res_users.py:0
 #, python-format
 msgid "Access denied: Your profile is not marked as self-managed."
-msgstr ""
+msgstr "Acceso denegado: Su perfil no está marcado como autogestionado."
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__access_warning
@@ -53,9 +571,15 @@ msgid "Action Needed"
 msgstr "Acción necesaria"
 
 #. module: clinic_management
-#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
-msgid "Actions"
-msgstr "Acciones"
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__active
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Active"
+msgstr "Activo"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Active Status"
+msgstr "Estado Activo"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_ids
@@ -83,9 +607,183 @@ msgid "Administrator"
 msgstr "Administrador"
 
 #. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/wizards/clinic_game_session_comparison_wizard.py:0
+#, python-format
+msgid "All selected sessions must be processed."
+msgstr "Todas las sesiones seleccionadas deben estar procesadas."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Analysis"
+msgstr "Análisis"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Analysis in progress..."
+msgstr "Análisis en progreso..."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Analysis video generation failed"
+msgstr "Falló la generación del video de análisis"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Analysis video not available"
+msgstr "Video de análisis no disponible"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_angle_requirement.py:0
+#, python-format
+msgid "Angle %(angle_type)s: maximum (%(max_angle)s°) exceeds 180°."
+msgstr "Ángulo %(angle_type)s: máximo (%(max_angle)s°) excede los 180°."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_angle_requirement.py:0
+#, python-format
+msgid "Angle %(angle_type)s: minimum (%(min_angle)s°) cannot be negative."
+msgstr "Ángulo %(angle_type)s: mínimo (%(min_angle)s°) no puede ser negativo."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_angle_requirement.py:0
+#, python-format
+msgid ""
+"Angle %(angle_type)s: minimum (%(min_angle)s°) must be less than maximum "
+"(%(max_angle)s°)."
+msgstr ""
+"Ángulo %(angle_type)s: mínimo (%(min_angle)s°) debe ser menor que máximo "
+"(%(max_angle)s°)."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_angle_requirement.py:0
+#, python-format
+msgid "Angle '%(angle_type)s' is already defined for pose '%(pose_name)s'."
+msgstr "El ángulo '%(angle_type)s' ya está definido para la pose '%(pose_name)s'."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_angle_requirement.py:0
+#, python-format
+msgid "Angle '%(angle_type)s' is already defined for this pose."
+msgstr "El ángulo '%(angle_type)s' ya está definido para esta pose."
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__angle_data
+msgid "Angle Data (JSON)"
+msgstr "Datos de Ángulos (JSON)"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "Angle Information"
+msgstr "Información de Ángulos"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__angle_range
+msgid "Angle Range (°)"
+msgstr "Rango de Ángulos (°)"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__angle_requirements_ids
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "Angle Requirements"
+msgstr "Requerimientos de Ángulos"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Angle Selection for Combined Chart"
+msgstr "Selección de Ángulos para Gráfico Combinado"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__angle_type
+msgid "Angle Type"
+msgstr "Tipo de Ángulo"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__selected_angles_for_chart_ids
+msgid "Angles for Chart"
+msgstr "Ángulos para Gráfico"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__angle_tag_ids
+msgid "Angles to Compare"
+msgstr "Ángulos a Comparar"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__video_annotated
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Annotated Video"
+msgstr "Video Anotado"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__filename_annotated
+msgid "Annotated Video Filename"
+msgstr "Nombre del Archivo de Video Anotado"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/clinic_game_session.py:0
+#, python-format
+msgid ""
+"Annotated video generation has been queued. Please refresh the page in a few"
+" moments to view the result."
+msgstr "La generación del video anotado ha sido puesta en cola. Por favor actualice la página en unos momentos para ver el resultado."
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__annotated_video_state__failed
+msgid "Annotation Failed"
+msgstr "Falló la Anotación"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/clinic_game_session.py:0
+#, python-format
+msgid "Annotation Queued"
+msgstr "Anotación en Cola"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__annotated_video_state
+msgid "Annotation Status"
+msgstr "Estado de Anotación"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Assign to specific patients (optional)"
+msgstr "Asignar a pacientes específicos (opcional)"
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_attachment_count
 msgid "Attachment Count"
 msgstr "Cantidad de adjuntos"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Available"
+msgstr "Disponible"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "Available Joint Angle Reference:"
+msgstr "Referencia de Ángulos Articulares Disponible:"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__backward_pose_id
+msgid "Backward Movement Pose"
+msgstr "Pose de Movimiento Hacia Atrás"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Basic Configuration"
+msgstr "Configuración Básica"
 
 #. module: clinic_management
 #: model:ir.model,name:clinic_management.model_clinic_game_session
@@ -101,7 +799,7 @@ msgstr "Notificaciones de sesión de juego de clínica"
 #: model:ir.actions.act_window,name:clinic_management.action_clinic_game_session
 #: model:ir.ui.menu,name:clinic_management.menu_clinic_game_session
 msgid "Clinic Game Sessions"
-msgstr "Sesiones de juego de clínica"
+msgstr "Sesiones de juego"
 
 #. module: clinic_management
 #: model:ir.module.category,name:clinic_management.category_clinic_management
@@ -111,13 +809,90 @@ msgstr "Gestión de clínica"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
-msgid "Communication history"
-msgstr "Historial de comunicación"
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_comparison_wizard_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__coin_challenge_time_limit
+msgid "Coin Challenge Time Limit (seconds)"
+msgstr "Límite de Tiempo del Desafío de Monedas (segundos)"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__pose_id
+msgid "Coin Pose"
+msgstr "Pose de Moneda"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Coin Poses Configuration"
+msgstr "Configuración de Poses de Monedas"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__coin_pose_line_ids
+msgid "Coin Poses Sequence"
+msgstr "Secuencia de Poses de Monedas"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/level_configuration.py:0
+#, python-format
+msgid "Coin challenge time limit must be between 1 and 60 seconds."
+msgstr "El límite de tiempo del desafío de monedas debe estar entre 1 y 60 segundos."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_comparison_wizard_form
+msgid "Compare Game Sessions"
+msgstr "Comparar Sesiones de Juego"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_tree
+msgid "Compare Sessions"
+msgstr "Comparar Sesiones"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_comparison_wizard_form
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_comparison_wizard_fullchart_form
+msgid "Comparison Chart"
+msgstr "Gráfico de Comparación"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__comparison_chart_data
+msgid "Comparison Chart Data"
+msgstr "Datos del Gráfico de Comparación"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__description
+msgid "Configuration Description"
+msgstr "Descripción de la Configuración"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Configuration Details:"
+msgstr "Detalles de la Configuración:"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Configuration Summary"
+msgstr "Resumen de la Configuración"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_angle_requirement.py:0
+#: code:addons/clinic_management/models/pose_definition.py:0
+#, python-format
+msgid "Configuration Warning"
+msgstr "Advertencia de Configuración"
 
 #. module: clinic_management
 #: model:ir.model,name:clinic_management.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Contact support"
+msgstr "Contactar soporte"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_partner__patient_link_ids
@@ -131,18 +906,53 @@ msgid "Contacts & Kinesiologists"
 msgstr "Contactos & Kinesiólogos"
 
 #. module: clinic_management
+#: model_terms:ir.actions.act_window,help:clinic_management.action_pose_definition
+msgid "Create your first custom pose definition"
+msgstr "Cree su primera definición de pose personalizada"
+
+#. module: clinic_management
+#: model_terms:ir.actions.act_window,help:clinic_management.action_level_configuration
+msgid "Create your first level configuration"
+msgstr "Cree su primera configuración de nivel"
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__create_uid
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__create_uid
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__create_uid
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__create_uid
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__create_uid
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__create_uid
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__create_uid
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__create_uid
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__create_date
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__create_date
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__create_date
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__create_date
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__create_date
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__create_date
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__create_date
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__create_date
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: clinic_management
+#: model:ir.model,name:clinic_management.model_pose_definition
+msgid "Custom Pose Definition"
+msgstr "Definición de Pose Personalizada"
+
+#. module: clinic_management
+#: model_terms:ir.actions.act_window,help:clinic_management.action_pose_definition
+msgid ""
+"Custom poses allow you to define new postures that will be\n"
+"                recognized by the system. You can specify which joint angles\n"
+"                are important and their valid ranges."
+msgstr "Las poses personalizadas le permiten definir nuevas posturas que serán reconocidas por el sistema. Puede especificar qué ángulos articulares son importantes y sus rangos válidos."
 
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__access_url
@@ -150,16 +960,66 @@ msgid "Customer Portal URL"
 msgstr "URL del portal del cliente"
 
 #. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Describe this level configuration..."
+msgstr "Describa esta configuración de nivel..."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "Describe this pose and how it should be executed..."
+msgstr "Describa esta pose y cómo debe ejecutarse..."
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__description
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_pose_angle_requirement__angle_range
+msgid "Difference between maximum and minimum angle"
+msgstr "Diferencia entre el ángulo máximo y mínimo"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Directional Movement"
+msgstr "Movimiento Direccional"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__chart_display_separate
+msgid "Display Angles in Separate Charts"
+msgstr "Mostrar Ángulos en Gráficos Separados"
+
+#. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__display_name
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__display_name
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__display_name
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__display_name
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__display_name
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__display_name
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__display_name
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__display_name
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__display_name
 msgid "Display Name"
 msgstr "Nombre Mostrado"
 
 #. module: clinic_management
-#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__done
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__display_name_tag
+msgid "Display Name Tag"
+msgstr "Etiqueta de Nombre de Visualización"
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__annotated_video_state__done
 msgid "Done"
 msgstr "Hecho"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_angle_requirement.py:0
+#, python-format
+msgid "Duplicate Angle"
+msgstr "Ángulo Duplicado"
 
 #. module: clinic_management
 #. odoo-python
@@ -174,14 +1034,22 @@ msgstr ""
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__feedback
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
 msgid "Feedback"
-msgstr "Feedback"
+msgstr "Retroalimentación"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__filename
 msgid "Filename"
 msgstr "Nombre de archivo"
+
+#. module: clinic_management
+#. odoo-javascript
+#: code:addons/clinic_management/static/src/components/video_widget/video_widget.js:0
+#, python-format
+msgid "Filename Field"
+msgstr "Campo de Nombre de Archivo"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_home
@@ -201,7 +1069,43 @@ msgstr "Seguidores (Contactos)"
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icono de Font Awesome, ej. fa-tasks"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_definition.py:0
+#, python-format
+msgid "Foot tolerance (%.3f) outside recommended range (0.01-0.5)."
+msgstr "La tolerancia del pie (%.3f) está fuera del rango recomendado (0.01-0.5)."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/pose_definition.py:0
+#, python-format
+msgid "Foot tolerance must be between 0 and 1."
+msgstr "La tolerancia del pie debe estar entre 0 y 1."
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__forward_pose_id
+msgid "Forward Movement Pose"
+msgstr "Pose de Movimiento Hacia Adelante"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__video_fps
+msgid "Frames Per Second of the processed video."
+msgstr "Fotogramas por segundo del video procesado."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/wizards/clinic_game_session_comparison_wizard.py:0
+#, python-format
+msgid "Full Comparison Chart"
+msgstr "Gráfico de Comparación Completo"
+
+#. module: clinic_management
+#: model:ir.model,name:clinic_management.model_level_configuration
+msgid "Game Level Configuration"
+msgstr "Configuración de Nivel de Juego"
 
 #. module: clinic_management
 #: model:mail.template,subject:clinic_management.email_template_clinic_session
@@ -213,16 +1117,49 @@ msgstr ""
 "object.session_date }}"
 
 #. module: clinic_management
-#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
-msgid "Game Session Feedback"
-msgstr "Feedback de sesión de juego"
-
-#. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.portal_layout
 #: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
 #: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_home
 msgid "Game Sessions"
 msgstr "Sesiones de juego"
+
+#. module: clinic_management
+#: model:ir.actions.server,name:clinic_management.ir_cron_generate_pending_annotated_videos_ir_actions_server
+msgid "Game Sessions: Generate Annotated Videos"
+msgstr "Sesiones de Juego: Generar Videos Anotados"
+
+#. module: clinic_management
+#: model:ir.actions.server,name:clinic_management.ir_cron_process_pending_game_session_videos_ir_actions_server
+msgid "Game Sessions: Process Pending Videos"
+msgstr "Sesiones de Juego: Procesar Videos Pendientes"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "General Information"
+msgstr "Información General"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Generate Annotated Video"
+msgstr "Generar Video Anotado"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid ""
+"Generates a new video with the selected angles drawn on it. This may take "
+"some time and will run in the background."
+msgstr "Genera un nuevo video con los ángulos seleccionados dibujados en él. Esto puede tomar algún tiempo y se ejecutará en segundo plano."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Generating analysis video..."
+msgstr "Generando video de análisis..."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_search
+msgid "Group By"
+msgstr "Agrupar Por"
 
 #. module: clinic_management
 #: model:ir.model.fields.selection,name:clinic_management.selection__res_partner__partner_type__guardian
@@ -257,10 +1194,16 @@ msgstr "Número de afiliado"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__id
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__id
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__id
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__id
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__id
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__id
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__id
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__id
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_exception_icon
@@ -271,6 +1214,13 @@ msgstr "Icono"
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr "Icono para indicar una actividad de excepción."
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__chart_display_separate
+msgid ""
+"If checked, each selected angle will be displayed in its own sub-chart. "
+"Otherwise, all selected angles will be overlaid on a single chart."
+msgstr "Si está marcado, cada ángulo seleccionado se mostrará en su propio sub-gráfico. De lo contrario, todos los ángulos seleccionados se superpondrán en un solo gráfico."
 
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_needaction
@@ -284,137 +1234,350 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcada, algunos mensajes tendrán un error de entrega."
 
 #. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_pose_definition__require_feet_on_ground
+msgid "If checked, the pose will only be detected if feet are on the ground"
+msgstr "Si está marcado, la pose solo se detectará si los pies están en el suelo"
+
+#. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_res_partner__self_managed
 #: model:ir.model.fields,help:clinic_management.field_res_users__self_managed
 msgid ""
 "Indicates if the patient manages their\n"
 "        own information without requiring a guardian."
-msgstr ""
+msgstr "Indica si el paciente gestiona su propia información sin requerir un tutor."
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__name
+msgid "Internal Name"
+msgstr "Nombre Interno"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_joint_angle_tag__name
+msgid ""
+"Internal name or key for the joint angle, e.g., RIGHT_ELBOW.Must match "
+"JointAngles Enum keys."
+msgstr "Nombre interno o clave para el ángulo articular, ej., RIGHT_ELBOW. Debe coincidir con las claves del Enum JointAngles."
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es Seguidor"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Joint Angle Chart"
+msgstr "Gráfico de Ángulos Articulares"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__joint_angle_chart_combined
+msgid "Joint Angle Chart Combined"
+msgstr "Gráfico Combinado de Ángulos Articulares"
+
+#. module: clinic_management
+#: model:ir.model,name:clinic_management.model_clinic_joint_angle_tag
+msgid "Joint Angle Tag for Selection"
+msgstr "Etiqueta de Ángulo Articular para Selección"
 
 #. module: clinic_management
 #: model:ir.model.fields.selection,name:clinic_management.selection__res_partner__partner_type__kinesiologist
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_res_partner_filter
 msgid "Kinesiologist"
-msgstr ""
+msgstr "Kinesiólogo"
 
 #. module: clinic_management
-#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
-msgid "Kinesiologists"
-msgstr ""
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__landmark_data
+msgid "Landmark Data (JSON)"
+msgstr "Datos de Puntos de Referencia (JSON)"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__write_uid
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__write_uid
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__write_uid
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__write_uid
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__write_uid
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__write_uid
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__write_uid
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__write_uid
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__write_date
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__write_date
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_joint_angle_tag__write_date
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__write_date
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__write_date
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__write_date
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__write_date
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__write_date
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__write_date
 msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Lateral Movement"
+msgstr "Movimiento Lateral"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__left_pose_id
+msgid "Left Movement Pose"
+msgstr "Pose de Movimiento Izquierda"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/level_configuration.py:0
+#, python-format
+msgid ""
+"Level 1 ('%(config_name)s') requires all movement poses.Missing: "
+"%(missing_poses)s"
 msgstr ""
+"El Nivel 1 ('%(config_name)s') requiere todas las poses de movimiento. Faltan: "
+"%(missing_poses)s"
+
+#. module: clinic_management
+#: model:ir.ui.menu,name:clinic_management.menu_level_management
+msgid "Level Administration"
+msgstr "Administración de Niveles"
+
+#. module: clinic_management
+#: model:ir.model,name:clinic_management.model_level_coin_pose_line
+msgid "Level Coin Pose Sequence Line"
+msgstr "Línea de Secuencia de Poses de Monedas del Nivel"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__level_config_id
+msgid "Level Configuration"
+msgstr "Configuración de Nivel"
+
+#. module: clinic_management
+#: model:ir.actions.act_window,name:clinic_management.action_level_configuration
+#: model:ir.ui.menu,name:clinic_management.menu_level_configurations
+msgid "Level Configurations"
+msgstr "Configuraciones de Nivel"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__level_number
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_search
+msgid "Level Number"
+msgstr "Número de Nivel"
+
+#. module: clinic_management
+#: model_terms:ir.actions.act_window,help:clinic_management.action_level_configuration
+msgid ""
+"Level configurations allow you to set up complete game levels with\n"
+"                specific pose assignments for movements and coin challenges.\n"
+"                These can be generic or assigned to specific patients."
+msgstr ""
+"Las configuraciones de nivel le permiten configurar niveles de juego completos con\n"
+"                asignaciones específicas de poses para movimientos y desafíos de monedas.\n"
+"                Estas pueden ser genéricas o asignadas a pacientes específicos."
 
 #. module: clinic_management
 #: model_terms:ir.actions.act_window,help:clinic_management.action_clinic_health_insurance
 msgid "Manage all the health insurance records here."
-msgstr ""
+msgstr "Gestione todos los registros de obras sociales aquí."
 
 #. module: clinic_management
-#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_has_error
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__max_angle
+msgid "Maximum Angle (°)"
+msgstr "Ángulo Máximo (°)"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_pose_angle_requirement__max_angle
+msgid "Maximum angle in degrees to consider this requirement valid"
+msgstr "Ángulo máximo en grados para considerar este requerimiento válido"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_delivery_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error de entrega de mensaje"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__angle_midpoint
+msgid "Midpoint (°)"
+msgstr "Punto Medio (°)"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_pose_angle_requirement__angle_midpoint
+msgid "Midpoint of the angle range"
+msgstr "Punto medio del rango de ángulo"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__min_angle
+msgid "Minimum Angle (°)"
+msgstr "Ángulo Mínimo (°)"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_pose_angle_requirement__min_angle
+msgid "Minimum angle in degrees to consider this requirement valid"
+msgstr "Ángulo mínimo en grados para considerar este requerimiento válido"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Movement Poses"
+msgstr "Poses de Movimiento"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Movement Poses:"
+msgstr "Poses de Movimiento:"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Fecha Límite de Mi Actividad"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_res_partner_filter
 msgid "My patients"
-msgstr ""
+msgstr "Mis pacientes"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_health_insurance__name
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__name
 msgid "Name"
-msgstr ""
-
-#. module: clinic_management
-#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__new
-msgid "New"
-msgstr ""
+msgstr "Nombre"
 
 #. module: clinic_management
 #. odoo-python
 #: code:addons/clinic_management/controllers/portal.py:0
 #, python-format
 msgid "Newest"
-msgstr ""
+msgstr "Más nuevo"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Fecha Límite de la Próxima Actividad"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Resumen de la Próxima Actividad"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Tipo de Próxima Actividad"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "No Game Sessions Found"
+msgstr "No se Encontraron Sesiones de Juego"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "No Video"
+msgstr "Sin Video"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/level_configuration.py:0
+#, python-format
+msgid ""
+"No active Level %(level_number)s configuration found for patient "
+"%(patient_name)s (ID: %(partner_id)s), nor a generic configuration for this "
+"level."
+msgstr "No se encontró una configuración activa de Nivel %(level_number)s para el paciente %(patient_name)s (ID: %(partner_id)s), ni una configuración genérica para este nivel."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "No analysis charts available yet."
+msgstr "Aún no hay gráficos de análisis disponibles."
 
 #. module: clinic_management
 #: model_terms:ir.actions.act_window,help:clinic_management.action_clinic_game_session
 msgid "No game sessions available yet."
-msgstr ""
+msgstr "Aún no hay sesiones de juego disponibles."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "No kinesiologist assigned"
+msgstr "Ningún kinesiólogo asignado"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "No messages yet"
+msgstr "Aún no hay mensajes"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "No other sessions available"
+msgstr "No hay otras sesiones disponibles"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/wizards/clinic_game_session_comparison_wizard.py:0
+#, python-format
+msgid "No sessions selected."
+msgstr "No se seleccionaron sesiones."
+
+#. module: clinic_management
+#. odoo-javascript
+#: code:addons/clinic_management/static/src/components/video_widget/video_widget.xml:0
+#, python-format
+msgid "No video available."
+msgstr "No hay video disponible."
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__annotated_video_state__none
+msgid "None"
+msgstr "Ninguno"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__note
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de Acciones"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de errores"
 
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Número de mensajes que requieren acción"
 
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensajes con error de entrega"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "Optional description of the requirement..."
+msgstr "Descripción opcional del requerimiento..."
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_coin_pose_line__sequence
+msgid "Order of the coin pose during gameplay."
+msgstr "Orden de la pose de moneda durante el juego."
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__coin_pose_line_ids
+msgid "Ordered sequence of poses for coin challenges. Poses can repeat."
+msgstr "Secuencia ordenada de poses para desafíos de monedas. Las poses pueden repetirse."
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_partner__partner_type
 #: model:ir.model.fields,field_description:clinic_management.field_res_users__partner_type
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__relationship
 msgid "Partner Type"
-msgstr ""
+msgstr "Tipo de Contacto"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__patient_id
@@ -422,105 +1585,279 @@ msgstr ""
 #: model:ir.model.fields.selection,name:clinic_management.selection__res_partner__partner_type__patient
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
 msgid "Patient"
-msgstr ""
+msgstr "Paciente"
 
 #. module: clinic_management
-#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
-msgid "Patient:"
-msgstr ""
+#. odoo-python
+#: code:addons/clinic_management/models/level_configuration.py:0
+#, python-format
+msgid ""
+"Patient %(patient_name)s already has an active configuration for level "
+"%(level_number)s."
+msgstr "El paciente %(patient_name)s ya tiene una configuración activa para el nivel %(level_number)s."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/level_configuration.py:0
+#, python-format
+msgid "Patient ID must be an integer."
+msgstr "El ID del paciente debe ser un número entero."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/level_configuration.py:0
+#, python-format
+msgid "Patient with ID %s not found."
+msgstr "Paciente con ID %s no encontrado."
 
 #. module: clinic_management
 #: model:ir.actions.act_window,name:clinic_management.action_clinic_patients
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__partner_ids
 #: model:ir.ui.menu,name:clinic_management.menu_clinic_patients
 #: model_terms:ir.actions.act_window,help:clinic_management.action_clinic_patients
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_academic_partner_form
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_tree
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_res_partner_filter
 msgid "Patients"
-msgstr ""
+msgstr "Pacientes"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_partner__patients_count
 #: model:ir.model.fields,field_description:clinic_management.field_res_users__patients_count
 msgid "Patients Count"
-msgstr ""
+msgstr "Cantidad de Pacientes"
 
 #. module: clinic_management
 #. odoo-python
 #: code:addons/clinic_management/models/clinic_game_session.py:0
 #, python-format
 msgid "Patients must be of type 'Patient'."
-msgstr ""
+msgstr "Los pacientes deben ser de tipo 'Paciente'."
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__partner_ids
+msgid ""
+"Patients this configuration applies to. A patient can only have one active "
+"configuration per level."
+msgstr "Pacientes a los que se aplica esta configuración. Un paciente solo puede tener una configuración activa por nivel."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__annotated_video_state__pending
+msgid "Pending Annotation"
+msgstr "Anotación Pendiente"
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__pending_processing
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
+msgid "Pending Processing"
+msgstr "Procesamiento Pendiente"
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/clinic_game_session.py:0
+#, python-format
+msgid "Please select at least one angle to visualize in the annotated video."
+msgstr "Por favor seleccione al menos un ángulo para visualizar en el video anotado."
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__access_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "URL de Acceso al Portal"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__pose_id
+msgid "Pose"
+msgstr "Pose"
+
+#. module: clinic_management
+#: model:ir.model,name:clinic_management.model_pose_angle_requirement
+msgid "Pose Angle Requirement"
+msgstr "Requerimiento de Ángulo de Pose"
+
+#. module: clinic_management
+#: model:ir.actions.act_window,name:clinic_management.action_pose_definition
+msgid "Pose Definitions"
+msgstr "Definiciones de Poses"
+
+#. module: clinic_management
+#: model:ir.ui.menu,name:clinic_management.menu_pose_management
+msgid "Pose Management"
+msgstr "Gestión de Poses"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__name
+msgid "Pose Name"
+msgstr "Nombre de la Pose"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__backward_pose_id
+msgid "Pose required for backward movement"
+msgstr "Pose requerida para movimiento hacia atrás"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__forward_pose_id
+msgid "Pose required for forward movement"
+msgstr "Pose requerida para movimiento hacia adelante"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__left_pose_id
+msgid "Pose required for left movement"
+msgstr "Pose requerida para movimiento hacia la izquierda"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__right_pose_id
+msgid "Pose required for right movement"
+msgstr "Pose requerida para movimiento hacia la derecha"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
 msgid "Preview"
-msgstr ""
+msgstr "Vista previa"
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__processed
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
+msgid "Processed"
+msgstr "Procesado"
+
+#. module: clinic_management
+#: model:ir.model.fields.selection,name:clinic_management.selection__clinic_game_session__state__processing_failed
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
+msgid "Processing Failed"
+msgstr "Error en el Procesamiento"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Processing Session"
+msgstr "Procesando Sesión"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Quick access to other sessions for"
+msgstr "Acceso rápido a otras sesiones para"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "Ready"
+msgstr "Listo"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__require_feet_on_ground
+msgid "Require Feet on Ground"
+msgstr "Requiere Pies en el Suelo"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_angle_requirement__description
+msgid "Requirement Description"
+msgstr "Descripción del Requerimiento"
 
 #. module: clinic_management
 #: model:ir.model,name:clinic_management.model_res_users_link
 msgid "Res Users Link"
-msgstr ""
+msgstr "Enlace de Usuarios"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario Responsable"
 
 #. module: clinic_management
 #. odoo-python
 #: code:addons/clinic_management/models/clinic_game_session.py:0
 #, python-format
 msgid "Review game session for %s"
-msgstr ""
+msgstr "Revisar sesión de juego para %s"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_configuration__right_pose_id
+msgid "Right Movement Pose"
+msgstr "Pose de Movimiento Derecha"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error de entrega de SMS"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__access_token
 msgid "Security Token"
-msgstr ""
+msgstr "Token de Seguridad"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Select angles above to display their graphs."
+msgstr "Seleccione los ángulos arriba para mostrar sus gráficos."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Select angles..."
+msgstr "Seleccionar ángulos..."
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_game_session__selected_angles_for_chart_ids
+msgid "Select joint angles to display on the chart(s)."
+msgstr "Seleccione ángulos articulares para mostrar en el/los gráfico(s)."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_comparison_wizard_form
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_comparison_wizard_fullchart_form
+msgid "Select sessions and angles to generate the comparison chart."
+msgstr "Seleccione sesiones y ángulos para generar el gráfico de comparación."
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_partner__self_managed
 #: model:ir.model.fields,field_description:clinic_management.field_res_users__self_managed
 msgid "Self Managed"
-msgstr ""
+msgstr "Autogestionado"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
 msgid "Send by Email"
-msgstr ""
+msgstr "Enviar por Correo Electrónico"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_level_coin_pose_line__sequence
+msgid "Sequence"
+msgstr "Secuencia"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__session_date
-#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
 msgid "Session Date"
-msgstr ""
+msgstr "Fecha de la Sesión"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
-msgid "Session Date:"
-msgstr ""
+msgid "Session history for"
+msgstr "Historial de sesiones para"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session_comparison_wizard__session_ids
+msgid "Sessions to Compare"
+msgstr "Sesiones a Comparar"
 
 #. module: clinic_management
 #: model:ir.ui.menu,name:clinic_management.menu_clinic_settings
 msgid "Settings"
-msgstr ""
+msgstr "Configuración"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "Start a conversation with your kinesiologist about this session"
+msgstr "Inicie una conversación con su kinesiólogo sobre esta sesión"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__state
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_search
-msgid "State"
-msgstr ""
+msgid "Status"
+msgstr "Estado"
 
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_state
@@ -529,14 +1866,14 @@ msgid ""
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr ""
+msgstr "Estado basado en actividades\nVencido: La fecha de vencimiento ya pasó\nHoy: La fecha de actividad es hoy\nPlanificado: Actividades futuras."
 
 #. module: clinic_management
 #. odoo-python
 #: code:addons/clinic_management/models/res_users_link.py:0
 #, python-format
 msgid "The Patients must have the partner type 'Patient'."
-msgstr ""
+msgstr "Los pacientes deben tener el tipo de contacto 'Paciente'."
 
 #. module: clinic_management
 #. odoo-python
@@ -544,59 +1881,199 @@ msgstr ""
 #: model:ir.model.constraint,message:clinic_management.constraint_res_users_link_link_unique
 #, python-format
 msgid "The contact must be added on a one-time basis with the patient."
-msgstr ""
+msgstr "El contacto debe agregarse una sola vez con el paciente."
+
+#. module: clinic_management
+#: model:ir.model.constraint,message:clinic_management.constraint_clinic_joint_angle_tag_name_uniq
+msgid "The internal name of the joint angle tag must be unique."
+msgstr "El nombre interno de la etiqueta de ángulo articular debe ser único."
+
+#. module: clinic_management
+#. odoo-javascript
+#: code:addons/clinic_management/static/src/components/video_widget/video_widget.js:0
+#, python-format
+msgid ""
+"The name of the field on the same record that holds the filename for this "
+"video."
+msgstr "El nombre del campo en el mismo registro que contiene el nombre del archivo para este video."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid ""
+"The order of poses selected here will determine the coin sequence (1st pose "
+"= Coin 1, 2nd pose = Coin 2, etc.)."
+msgstr "El orden de las poses seleccionadas aquí determinará la secuencia de monedas (1ra pose = Moneda 1, 2da pose = Moneda 2, etc.)."
+
+#. module: clinic_management
+#. odoo-python
+#: code:addons/clinic_management/models/clinic_game_session.py:0
+#, python-format
+msgid ""
+"The original video must be processed and angle data must be available to "
+"generate an annotated video."
+msgstr "El video original debe estar procesado y los datos de ángulos deben estar disponibles para generar un video anotado."
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_coin_pose_line__pose_id
+msgid "The specific pose for this coin."
+msgstr "La pose específica para esta moneda."
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
-msgid "There are no game sessions."
-msgstr ""
+msgid ""
+"There are currently no game sessions to display. Sessions will appear here "
+"once they are created by the care team."
+msgstr "Actualmente no hay sesiones de juego para mostrar. Las sesiones aparecerán aquí una vez que sean creadas por el equipo de atención."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid ""
+"This session's video is pending processing.\n"
+"                                The combined chart will be available once processing is complete."
+msgstr "El video de esta sesión está pendiente de procesamiento.\n                                El gráfico combinado estará disponible una vez que se complete el procesamiento."
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_level_configuration__coin_challenge_time_limit
+msgid "Time limit in seconds for coin pose challenges"
+msgstr "Límite de tiempo en segundos para desafíos de poses de monedas"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Timing Configuration"
+msgstr "Configuración de Tiempo"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_pose_definition__foot_tolerance_y
+msgid "Tolerance to verify if foot points are \"close\" in Y (flat foot)"
+msgstr "Tolerancia para verificar si los puntos del pie están \"cerca\" en Y (pie plano)"
 
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de actividad de excepción en el registro."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "Uncheck to deactivate this level configuration without deleting it."
+msgstr "Desmarque para desactivar esta configuración de nivel sin eliminarla."
 
 #. module: clinic_management
 #: model:ir.model,name:clinic_management.model_res_users
 #: model:ir.model.fields,field_description:clinic_management.field_res_users_link__user_id
 #: model:res.groups,name:clinic_management.group_clinic_management_user
 msgid "User"
-msgstr ""
+msgstr "Usuario"
+
+#. module: clinic_management
+#: model:ir.model.fields,help:clinic_management.field_clinic_joint_angle_tag__display_name_tag
+msgid "User-friendly name for the joint angle, e.g., Right Elbow."
+msgstr "Nombre amigable para el ángulo articular, ej., Codo Derecho."
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__video
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
-msgid "View Details"
-msgstr ""
+msgid "Video Available"
+msgstr "Video Disponible"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__video_fps
+msgid "Video FPS"
+msgstr "FPS del Video"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Video Information"
+msgstr "Información del Video"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "Video processing failed."
+msgstr "Error en el procesamiento del video."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "View All <i class=\"fa fa-external-link-alt fa-xs ms-1\"/>"
+msgstr "Ver Todo <i class=\"fa fa-external-link-alt fa-xs ms-1\"/>"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_comparison_wizard_form
+msgid "View chart in full screen"
+msgstr "Ver gráfico en pantalla completa"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "View session details"
+msgstr "Ver detalles de la sesión"
 
 #. module: clinic_management
 #: model_terms:ir.ui.view,arch_db:clinic_management.view_academic_partner_form
 msgid "Wards"
-msgstr ""
+msgstr "Pupilos"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_res_partner__wards_count
 #: model:ir.model.fields,field_description:clinic_management.field_res_users__wards_count
 msgid "Wards Count"
-msgstr ""
+msgstr "Cantidad de Pupilos"
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensajes del Sitio Web"
 
 #. module: clinic_management
 #: model:ir.model.fields,help:clinic_management.field_clinic_game_session__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicación del sitio web"
+
+#. module: clinic_management
+#: model:ir.model,name:clinic_management.model_clinic_game_session_comparison_wizard
+msgid "Wizard to Compare Clinic Game Sessions"
+msgstr "Asistente para Comparar Sesiones de Juego de Clínica"
+
+#. module: clinic_management
+#: model:ir.model.fields,field_description:clinic_management.field_pose_definition__foot_tolerance_y
+msgid "Y Tolerance for Feet"
+msgstr "Tolerancia Y para Pies"
 
 #. module: clinic_management
 #. odoo-javascript
 #: code:addons/clinic_management/static/src/components/video_widget/video_widget.xml:0
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
 #, python-format
 msgid "Your browser does not support the video tag."
-msgstr ""
+msgstr "Su navegador no soporta la etiqueta de video."
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_pose_definition_form
+msgid "e.g., Lateral Squat"
+msgstr "ej., Sentadilla Lateral"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "e.g., Standard Level 1"
+msgstr "ej., Nivel Estándar 1"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "of"
+msgstr "de"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_level_configuration_form
+msgid "seconds"
+msgstr "segundos"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.portal_my_game_sessions
+msgid "session"
+msgstr "sesión"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid "total sessions"
+msgstr "sesiones totales"
