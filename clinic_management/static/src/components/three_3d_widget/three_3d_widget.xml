@@ -1,0 +1,9 @@
+<templates xml:space="preserve">
+    <t t-name="clinic_management.Three3DWidget">
+        <div
+            class="o_field_three_3d_widget"
+            t-ref="container"
+            style="width:100%;height:400px;"
+        />
+    </t>
+</templates>

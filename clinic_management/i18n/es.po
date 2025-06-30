@@ -2077,3 +2077,25 @@ msgstr "sesión"
 #: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
 msgid "total sessions"
 msgstr "sesiones totales"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.view_clinic_game_session_form
+msgid "3D Landmarks"
+msgstr "Puntos de Referencia 3D"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<i class=\"fa fa-cube me-2\"/>\n"
+"                                    3D Movement Visualization"
+msgstr ""
+"<i class=\"fa fa-cube me-2\"/>\n"
+"                                    Visualización 3D de Movimiento"
+
+#. module: clinic_management
+#: model_terms:ir.ui.view,arch_db:clinic_management.game_session_portal_template
+msgid ""
+"<small>Interact with the 3D visualization of the session's movement "
+"landmarks.</small>"
+msgstr ""
+"<small>Interactúa con la visualización 3D de los puntos de movimiento de la sesión.</small>"

@@ -150,6 +150,17 @@
                         <page string="Feedback">
                             <field name="feedback" />
                         </page>
+                        <page
+                            string="3D Landmarks"
+                            name="page_3d_landmarks"
+                            invisible="not landmark_data"
+                        >
+                            <field
+                                name="landmark_data"
+                                widget="three_3d_widget"
+                                nolabel="1"
+                            />
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
