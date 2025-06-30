@@ -169,6 +169,8 @@ class GameSessionCustomerPortal(CustomerPortal):
                 session_sudo.state == "processed"
                 and session_sudo.joint_angle_chart_combined
             ),
+            "landmark_data": (session_sudo.landmark_data),
+            "video_fps": (session_sudo.video_fps),
         }
 
         history_session_key = "my_game_sessions_history"

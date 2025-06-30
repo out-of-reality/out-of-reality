@@ -35,5 +35,8 @@
     "installable": True,
     "auto_install": False,
     "application": True,
-    "assets": {"web.assets_backend": ["clinic_management/static/src/components/**/*"]},
+    "assets": {
+        "web.assets_backend": ["clinic_management/static/src/components/**/*"],
+        "web.assets_frontend": ["clinic_management/static/src/components/**/*"],
+    },
 }

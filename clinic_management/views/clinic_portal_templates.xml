@@ -444,6 +444,9 @@
 
             <script src="https://d3js.org/d3.v3.min.js" />
             <script src="https://mpld3.github.io/js/mpld3.v0.3.js" />
+            <script
+                src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"
+            />
 
             <t t-if="object.state == 'pending_processing'">
                 <div
@@ -780,7 +783,31 @@
                     </div>
                 </div>
             </t>
-
+            <t t-if="object.state == 'processed' and object.landmark_data">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="card-title mb-0">
+                                    <i class="fa fa-cube me-2" />
+                                    3D Movement Visualization
+                                </h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <owl-component
+                                    name="three_3d_widget_public"
+                                    t-att-props="json.dumps({'record': {'data': {'landmark_data': object.landmark_data, 'video_fps': object.video_fps}}, 'name': 'landmark_data'})"
+                                    style="margin: auto;"
+                                />
+                                <p class="text-muted mt-2 mb-0">
+                                    <small
+                                    >Interact with the 3D visualization of the session's movement landmarks.</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
             <t t-if="not is_html_empty(object.feedback)">
                 <div class="row mb-4">
                     <div class="col-12">
