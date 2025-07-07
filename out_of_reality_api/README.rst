@@ -22,12 +22,90 @@ Out of Reality API
 
 |badge1| |badge2| |badge3|
 
-Complete description
+FastAPI-based REST API for the Out of Reality rehabilitation system.
+
+Provides endpoints for user authentication, video upload/processing,
+level management, and game session data exchange with VR/AR
+applications.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Installation
+============
+
+**Requirements:**
+
+- FastAPI framework
+- FFmpeg for video processing
+- Required Odoo modules:
+
+  - fastapi
+  - clinic_management
+  - auth_faceid
+
+Configuration
+=============
+
+**Setup:**
+
+1. **Configure JWT Secret Key**
+
+   - Go to Settings → System Parameters
+   - Create parameter: ``jwt.secret_key`` with a secure secret
+
+2. **Install FFmpeg (for video processing)**
+
+   .. code:: bash
+
+      # Ubuntu/Debian
+      sudo apt-get install ffmpeg
+
+      # macOS
+      brew install ffmpeg
+
+3. **Configure API Endpoints**
+
+   - API will be available at: ``/api/out_of_reality_api/``
+   - Documentation at: ``/api/out_of_reality_api/docs``
+
+4. **Configure FaceID Authentication**
+
+   - Install and configure ``auth_faceid`` module
+   - Setup facial recognition service
+
+Usage
+=====
+
+**Authentication:**
+
+1. Login with credentials: ``POST /api/out_of_reality_api/login``
+2. Use access token in Authorization header: ``Bearer <token>``
+3. Alternative: FaceID login:
+   ``POST /api/out_of_reality_api/faceid_login``
+
+**Video Upload:**
+
+1. Upload MP4 videos: ``POST /api/out_of_reality_api/upload/``
+2. Videos are automatically converted to H.264 format
+3. Returns filename for further processing
+
+**Level Management:**
+
+1. Get first active level:
+   ``GET /api/out_of_reality_api/levels/first_active``
+2. Get specific level: ``GET /api/out_of_reality_api/levels/{level_id}``
+
+**User Info:**
+
+1. Get current user info: ``GET /api/out_of_reality_api/whoami``
+
+**API Documentation:**
+
+- Interactive docs available at: ``/api/out_of_reality_api/docs``
+- OpenAPI schema at: ``/api/out_of_reality_api/openapi.json``
 
 Bug Tracker
 ===========
