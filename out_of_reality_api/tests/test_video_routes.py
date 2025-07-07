@@ -69,7 +69,8 @@ class TestVideoRoutes(FastAPITransactionCase):
                 os.unlink(tmp_file_path)
 
     @patch("odoo.addons.out_of_reality_api.routers.videos.convert_video_to_h264_ffmpeg")
-    def test_upload_video_conversion_failure(self, mock_convert):
+    @patch("odoo.addons.out_of_reality_api.routers.videos._logger")
+    def test_upload_video_conversion_failure(self, mock_logger, mock_convert):
         mock_convert.return_value = False
 
         with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp_file:
@@ -85,6 +86,8 @@ class TestVideoRoutes(FastAPITransactionCase):
 
             self.assertEqual(response.status_code, 500)
             self.assertIn("Video conversion failed", response.json()["detail"])
+            # Verify that the error would have been logged (but we mocked it)
+            mock_logger.error.assert_called_once()
 
         finally:
             if os.path.exists(tmp_file_path):

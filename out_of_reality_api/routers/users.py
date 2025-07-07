@@ -46,7 +46,10 @@ def login(
             env["res.users"]
             .sudo()
             .authenticate(
-                db=env.cr.dbname, login=username, password=password, user_agent_env=None
+                db=env.cr.dbname,
+                login=username,
+                password=password,
+                user_agent_env={"interactive": True},
             )
         )
     except AccessDenied as err:
