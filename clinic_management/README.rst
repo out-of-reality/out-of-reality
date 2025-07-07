@@ -22,12 +22,70 @@ Clinic Management
 
 |badge1| |badge2| |badge3|
 
-Complete description
+Comprehensive clinic management system for physical therapy and
+rehabilitation centers.
+
+Manages patients, kinesiologists, game sessions, health insurance, and
+exercise poses for rehabilitation programs using VR/AR technology.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Installation
+============
+
+**Requirements:**
+
+- Just install.
+
+Configuration
+=============
+
+**Setup:**
+
+1. **Configure Health Insurance Providers**
+
+   - Go to Clinic → Configuration → Health Insurance
+   - Add insurance providers with coverage details
+
+2. **Setup Exercise Poses**
+
+   - Go to Clinic → Configuration → Pose Definitions
+   - Define rehabilitation poses and their parameters
+
+3. **Configure Game Levels**
+
+   - Go to Clinic → Configuration → Level Configuration
+   - Setup difficulty levels and progression rules
+
+4. **Create Kinesiologist Profiles**
+
+   - Go to Users → Create new kinesiologist user
+   - Assign appropriate permissions and specializations
+
+Usage
+=====
+
+**Patient Registration:**
+
+1. Go to Clinic → Patients → Create
+2. Fill patient information and health insurance details
+3. Configure self-managed or guardian access
+
+**Session Management:**
+
+1. Go to Clinic → Game Sessions
+2. Create new session for patient
+3. Assign kinesiologist and configure exercises
+4. Monitor session progress and results
+
+**Reporting:**
+
+- View patient progress reports
+- Track kinesiologist performance
+- Generate insurance billing reports
 
 Bug Tracker
 ===========
