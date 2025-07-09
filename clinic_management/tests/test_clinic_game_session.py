@@ -54,7 +54,6 @@ class TestClinicGameSession(TransactionCase):
         self.game_session = self.env["clinic.game.session"].create(
             {
                 "patient_id": self.patient.id,
-                "state": "new",
             }
         )
 

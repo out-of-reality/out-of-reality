@@ -750,12 +750,12 @@
                                         style="width: 100%; min-height: 400px;"
                                     >
                                         <t
-                                            t-raw="object.joint_angle_chart_combined.get('div', '')"
+                                            t-out="object.joint_angle_chart_combined.get('div', '')"
                                         />
                                     </div>
                                     <script type="text/javascript">
                                         <t
-                                            t-raw="object.joint_angle_chart_combined.get('script', '')"
+                                            t-out="object.joint_angle_chart_combined.get('script', '')"
                                         />
                                     </script>
                                 </t>
