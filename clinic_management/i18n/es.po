@@ -1,3 +1,14 @@
+#. module: clinic_management
+#: model:ir.ui.menu,name:clinic_management.menu_clinic_people
+msgid "People"
+msgstr "Personas"
+#. module: clinic_management
+#. module: clinic_management
+#. module: clinic_management
+#: model:ir.ui.menu,name:clinic_management.menu_clinic_kinesiologists
+msgid "Kinesiologists"
+msgstr "Kinesiólogos"
+#. module: clinic_management
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* clinic_management
@@ -1030,7 +1041,7 @@ msgid ""
 "'Guardian', unless marked as self-managed."
 msgstr ""
 "Cada paciente debe tener al menos un contacto vinculado con tipo de "
-"interlocutor «Tutor», a menos que esté marcado como autogestionado."
+"contacto «Tutor», a menos que esté marcado como autogestionado."
 
 #. module: clinic_management
 #: model:ir.model.fields,field_description:clinic_management.field_clinic_game_session__feedback

@@ -128,4 +128,30 @@
             </p>
         </field>
     </record>
+
+    <record id="action_clinic_guardians" model="ir.actions.act_window">
+        <field name="name">Guardians</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_partner_type': 'guardian'}</field>
+        <field name="domain">[('partner_type', '=', 'guardian')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Guardians
+            </p>
+        </field>
+    </record>
+
+    <record id="action_clinic_kinesiologists" model="ir.actions.act_window">
+        <field name="name">Kinesiologists</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_partner_type': 'kinesiologist'}</field>
+        <field name="domain">[('partner_type', '=', 'kinesiologist')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Kinesiologists
+            </p>
+        </field>
+    </record>
 </odoo>

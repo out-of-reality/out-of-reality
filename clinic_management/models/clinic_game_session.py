@@ -95,17 +95,6 @@ class ClinicGameSession(models.Model):
             )
             rec.display_name = f"{name} - {date}" if name and date else name or date
 
-    def _message_get_suggested_recipients(self):
-        res = super()._message_get_suggested_recipients()
-        patient = self.patient_id
-        if patient.self_managed:
-            self._message_add_suggested_recipient(res, partner=patient)
-
-        linked_partners = patient.patient_link_ids.mapped("user_id.partner_id")
-        for partner in linked_partners:
-            self._message_add_suggested_recipient(res, partner=partner)
-        return res
-
     def _subscribe_partners(self):
         for record in self:
             partners_to_subscribe = record.patient_id.patient_link_ids.mapped(
@@ -129,12 +118,12 @@ class ClinicGameSession(models.Model):
         )
         if self._name == "clinic.game.session" and is_portal_user:
             self = self.sudo()
-            self._subscribe_partners()
         return super().message_post(**kwargs)
 
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
+        records._subscribe_partners()
         for record in records:
             kinesiologists = record.patient_id.patient_link_ids.filtered(
                 lambda link: link.user_id.partner_id.partner_type == "kinesiologist"
@@ -148,6 +137,7 @@ class ClinicGameSession(models.Model):
                     summary=summary,
                     date_deadline=fields.Date.today(),
                 )
+
         return records
 
     def _find_mail_template(self):
@@ -457,6 +447,7 @@ class ClinicGameSession(models.Model):
                         "be available to generate an annotated video."
                     )
                 )
+
             if not record.selected_angles_for_chart_ids:
                 raise UserError(
                     _(

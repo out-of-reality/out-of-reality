@@ -6,12 +6,27 @@
         web_icon="clinic_management,static/description/icon.png"
     >
 
-        <menuitem
-            id="menu_clinic_patients"
-            name="Patients"
-            action="action_clinic_patients"
-            sequence="10"
-        />
+        <menuitem id="menu_clinic_people" name="People" sequence="5">
+            <menuitem
+                id="menu_clinic_patients"
+                name="Patients"
+                action="action_clinic_patients"
+                sequence="10"
+            />
+            <menuitem
+                id="menu_clinic_guardians"
+                name="Guardians"
+                action="action_clinic_guardians"
+                sequence="15"
+            />
+            <menuitem
+                id="menu_clinic_kinesiologists"
+                name="Kinesiologists"
+                action="action_clinic_kinesiologists"
+                sequence="18"
+            />
+        </menuitem>
+
         <menuitem
             id="menu_clinic_game_session"
             name="Clinic Game Sessions"

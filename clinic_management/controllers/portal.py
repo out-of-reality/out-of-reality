@@ -1,3 +1,5 @@
+from markupsafe import Markup
+
 from odoo import _, http
 from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
@@ -152,6 +154,20 @@ class GameSessionCustomerPortal(CustomerPortal):
             [("patient_id", "=", patient.id), ("state", "=", "processed")]
         )
 
+        chart_combined = session_sudo.joint_angle_chart_combined or {}
+
+        def _as_safe_markup(val):
+            if val is None:
+                return ""
+            if isinstance(val, Markup):
+                return val
+            return Markup(str(val))
+
+        chart_combined_safe = {
+            "div": _as_safe_markup(chart_combined.get("div", "")),
+            "script": _as_safe_markup(chart_combined.get("script", "")),
+        }
+
         values = {
             "game_session": session_sudo,
             "patient": patient,
@@ -171,6 +187,7 @@ class GameSessionCustomerPortal(CustomerPortal):
             ),
             "landmark_data": (session_sudo.landmark_data),
             "video_fps": (session_sudo.video_fps),
+            "joint_angle_chart_combined": chart_combined_safe,
         }
 
         history_session_key = "my_game_sessions_history"
