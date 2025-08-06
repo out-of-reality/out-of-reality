@@ -49,8 +49,8 @@ class ClinicGameSession(models.Model):
         tracking=True,
     )
     feedback = fields.Html()
-    landmark_data = fields.Text(string="Landmark Data (JSON)", readonly=True)
-    angle_data = fields.Text(string="Angle Data (JSON)", readonly=True)
+    landmark_data = fields.Json(eadonly=True)
+    angle_data = fields.Json(readonly=True)
     video_fps = fields.Float(
         string="Video FPS",
         readonly=True,
@@ -216,8 +216,8 @@ class ClinicGameSession(models.Model):
             self.write(
                 {
                     "video_fps": fps,
-                    "landmark_data": landmark_json,
-                    "angle_data": angle_json,
+                    "landmark_data": json.loads(landmark_json) if landmark_json else {},
+                    "angle_data": json.loads(angle_json) if angle_json else {},
                     "state": "processed",
                 }
             )
@@ -378,11 +378,12 @@ class ClinicGameSession(models.Model):
         self.ensure_one()
         if not self.angle_data or not self.video_fps or self.video_fps <= 0:
             return {}
-        try:
-            all_angles_over_time = json.loads(self.angle_data)
-        except json.JSONDecodeError:
+
+        all_angles_over_time = self.angle_data
+        if not isinstance(all_angles_over_time, dict):
             _logger.warning(
-                "Chart generation failed: Could not parse angle data for session %s.",
+                "Chart generation failed: angle_data is not a dictionary for "
+                "session %s.",
                 self.id,
             )
             return {}
@@ -501,7 +502,9 @@ class ClinicGameSession(models.Model):
 
             video_b64, filename_annotated = video_annotator.generate_annotated_video(
                 original_video_path=temp_video_path,
-                angle_data_json=self.angle_data,
+                angle_data_json=json.dumps(self.angle_data)
+                if self.angle_data
+                else "{}",
                 selected_angle_names=selected_angle_names,
                 video_fps=self.video_fps,
                 original_filename=self.filename,

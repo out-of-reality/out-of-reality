@@ -1,4 +1,3 @@
-import json
 import logging
 
 import matplotlib.pyplot as plt
@@ -88,9 +87,9 @@ class ClinicGameSessionComparisonWizard(models.TransientModel):
     def _extract_session_data(self, session, angle_tag):
         if not session.angle_data or not session.video_fps or session.video_fps <= 0:
             return [], [], ""
-        try:
-            all_angles = json.loads(session.angle_data)
-        except json.JSONDecodeError:
+
+        all_angles = session.angle_data
+        if not isinstance(all_angles, dict):
             _logger.warning(
                 "Could not parse angle_data for session "
                 f"{session.id} in comparison wizard."
