@@ -293,7 +293,13 @@ export class Three3DWidget extends Component {
         const rawValue = this.props.record?.data?.[this.props.name];
         let data = [];
         try {
-            data = JSON.parse(rawValue || "[]");
+            if (typeof rawValue === "string") {
+                data = JSON.parse(rawValue || "[]");
+            } else if (Array.isArray(rawValue)) {
+                data = rawValue;
+            } else {
+                data = [];
+            }
         } catch (e) {
             container.innerHTML = "<div style='color:red'>Invalid landmark data</div>";
             return;
