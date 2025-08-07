@@ -309,7 +309,18 @@ export class Three3DWidget extends Component {
             return;
         }
         let rawFrames = [];
-        if (Array.isArray(data[0]) && data[0].length === 33) {
+
+        const validFrames = data.filter(
+            (frame) =>
+                Array.isArray(frame) &&
+                frame.length === 33 &&
+                Array.isArray(frame[0]) &&
+                frame[0].length >= 3
+        );
+
+        if (validFrames.length > 0) {
+            rawFrames = validFrames;
+        } else if (Array.isArray(data[0]) && data[0].length === 33) {
             rawFrames = data;
         } else if (
             Array.isArray(data) &&

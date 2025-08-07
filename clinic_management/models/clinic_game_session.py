@@ -213,10 +213,18 @@ class ClinicGameSession(models.Model):
                 temp_video_path
             )
 
+            landmark_data = []
+            if landmark_json:
+                raw_landmarks = json.loads(landmark_json)
+                landmark_data = [
+                    [[point[0], point[1], point[2]] for point in frame]
+                    for frame in raw_landmarks
+                ]
+
             self.write(
                 {
                     "video_fps": fps,
-                    "landmark_data": json.loads(landmark_json) if landmark_json else {},
+                    "landmark_data": landmark_data,
                     "angle_data": json.loads(angle_json) if angle_json else {},
                     "state": "processed",
                 }
